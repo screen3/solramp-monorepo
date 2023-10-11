@@ -27,6 +27,7 @@ users
 transactions
 - id (primary key)
 - business_id (foreign key)
+- reference (unique)
 - channel (WISE | BANK | QR)
 - status (COMPLETED | DISPUTED | CANCELED | REJECTED)
 - fee
