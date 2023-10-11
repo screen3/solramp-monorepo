@@ -6,9 +6,9 @@ businesses
 - representative_id (foreign key)
 - business_id (6 digits unique)
 - default_currency (AED | USD | NGN)  - enum field
-- preferred_channels (json: WISE | BANK | QR) - more than one channel can be saved 
+- preferred_channels (JSON: WISE | BANK | QR) - more than one channel can be saved 
 - recipient_address (44 string length)
-- logo (url string)
+- logo (URL string)
 - callback_url
 - webhook_url
 - created_at
@@ -43,8 +43,8 @@ customers
 - created_at
 
 ads
-- base_currency (json:  AED | USD| NGN) more than one base currency can be selected
-- quote_crypto (json:  USDC | USDT| NGN) more than one quote crypto can be selected
+- base_currency (JSON:  AED | USD| NGN) more than one base currency can be selected
+- quote_crypto (JSON:  USDC | USDT| NGN) more than one quote crypto can be selected
 - minimum_amount (positive integer)
 - maximum_amount (positive integer)
 
@@ -61,7 +61,7 @@ ads
   "representative_lastname": "Doe",
   "representative_email": "johndoe@gmail.com"
   "representative_phone": "2348123456789",
-  "default_currency" : "AED" //Should be determined by phone number extension selected
+  "default_currency": "AED" //Should be determined by the phone number extension selected
 }
 ```
 - Response body
@@ -87,7 +87,7 @@ password
 ```
 - Response body
 ```
-session ...
+// session details...
 ```
 
 /api/v1/business/upadate
@@ -104,7 +104,7 @@ session ...
  }
 ```
 
-- Response body : business public fields
+- Response body: business public fields
 
 
 /api/v1/account/update
