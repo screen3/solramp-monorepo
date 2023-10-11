@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  /* background: #E4E7EC; */
+}
+
+.react-tabs li {
+  color: #98A2B3;
+}
+.react-tabs li.react-tabs__tab--selected{
+  border-color: #A15DDF;
+  color: #A15DDF;
+}
