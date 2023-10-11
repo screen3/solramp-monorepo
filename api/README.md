@@ -131,7 +131,7 @@ password
 
 - POST
 - Request body
-```
+```js
 {
   amount,
   fee,
