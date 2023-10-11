@@ -1,16 +1,14 @@
-
 ## Schemas
 
 businesses
 - id (primary key)
 - business_name
-- representative_firstname
-- representative_lastname
-- representative_email
-- representative_phone
+- representative_id (foreign key)
 - business_id (6 digits unique)
-- default_currency (AED | USD | NGN)
-- preferred_channel (WISE | BANK | QR)
+- default_currency (AED | USD | NGN)  - enum field
+- preferred_channels (json: WISE | BANK | QR) - more than one channel can be saved 
+- recipient_address (44 string length)
+- logo (url string)
 - callback_url
 - webhook_url
 - created_at
@@ -18,7 +16,11 @@ businesses
 users
 - id (primary key)
 - company_id (foreign key)
-- email (same as representative_email)
+- firstname
+- lastname
+- email
+- phone
+- country_iso2_code (AE | US | NG) - enum field
 - password
 - created_at
 
@@ -27,6 +29,7 @@ transactions
 - business_id (foreign key)
 - channel (WISE | BANK | QR)
 - status (COMPLETED | DISPUTED | CANCELED | REJECTED)
+- fee
 - start_time
 - end_time
 - created_at
@@ -38,9 +41,15 @@ customers
 - email (unique)
 - created_at
 
+ads
+- base_currency (json:  AED | USD| NGN) more than one base currency can be selected
+- quote_crypto (json:  USDC | USDT| NGN) more than one quote crypto can be selected
+- minimum_amount (positive integer)
+- maximum_amount (positive integer)
+
 ## API Endpoints
 
-/api/v1/account/new
+/api/v1/business/new
 
 - POST
 - Request body
@@ -67,4 +76,77 @@ customers
 }
 ```
 
+/api/v1/account/login
 
+- POST 
+- Request body
+```
+username,
+password
+```
+- Response body
+```
+session ...
+```
+
+/api/v1/business/upadate
+
+- POST/PUT
+- Request body
+```
+ {
+  preferred_channels,
+  logo,
+  recipient_address,
+  callback_url,
+  webhook_url,
+ }
+```
+
+- Response body : business public fields
+
+
+/api/v1/account/update
+
+- POST/PUT
+- Request body
+```
+ {
+  firstname,
+  lastname,
+  phone
+ }
+```
+
+- Response body : account public fields
+
+/api/v1/business/:business_id/profile
+
+- GET
+- Request body: session
+- Response body: Company profile
+
+/api/v1/business/:business_id/transaction/create
+
+- POST
+- Request body
+```
+{
+  amount,
+  fee,
+  total_amount,
+  customer_email,
+  recipient,
+  crypto, //USDT, USDC
+  currency, //AED, NGN, USD
+  business_id
+}
+```
+
+/api/v1/business/:business_id/transaction/list
+
+- GET
+
+/api/v1/business/ads/:base_currency/:quote_crypto
+
+- GET
