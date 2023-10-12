@@ -13,3 +13,25 @@ body{
   border-color: #A15DDF;
   color: #A15DDF;
 }
+
+.ant-switch.ant-switch-checked{
+	background: #08B639 !important;
+}
+.ant-switch:not(.ant-switch-disabled){
+	background: rgba(0, 0, 0, 0.45) ;
+}
+
+textarea::-webkit-scrollbar {
+  width: 2px;
+  color:#A15DDF;
+
+}
+
+.pricing_box{
+  background: rgba(255, 255, 255, 0.31);
+  padding: 33px 24px 47px 23px;
+}
+
+.hero .pricing_box{
+  box-shadow: 0px 4px 28px 0px rgba(50, 49, 49, 0.03);
+}

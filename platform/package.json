@@ -9,13 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/next-js": "^2.1.5",
+    "@chakra-ui/react": "^2.8.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "antd": "^5.10.0",
+    "antd-country-phone-input": "^4.5.1",
     "classnames": "^2.3.2",
     "framer-motion": "^10.16.4",
     "iconsax-react": "^0.0.8",
     "next": "13.5.4",
     "react": "^18",
+    "react-apexcharts": "^1.4.1",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18",
-    "react-tabs": "^6.0.2"
+    "react-iconly": "^2.2.10",
+    "react-tabs": "^6.0.2",
+    "world_countries_lists": "^2.8.2"
   },
   "devDependencies": {
     "autoprefixer": "^10",
