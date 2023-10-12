@@ -113,7 +113,34 @@ const create = async (business) => {
     });
 };
 
+const updateBusinessById = async (businessId, data) => {
+    return new Promise((resolve, reject) => {
+        conn.query(
+            "UPDATE businesses SET business_name = ?, business_slug = ?, default_currency = ?, preferred_channels = ?, recipient_address = ?, logo = ?, callback_url = ?, webhook_url = ? WHERE id = ?",
+            [
+                data.business_name,
+                slugify(data.business_name, { lower: true }),
+                data.default_currency,
+                data.preferred_channels,
+                data.recipient_address,
+                data.logo,
+                data.callback_url,
+                data.webhook_url,
+                businessId,
+            ],
+            function (error, results, fields) {
+                if (error) {
+                    reject(error);
+                }
+
+                resolve(results);
+            }
+        );
+    });
+};
+
 module.exports = {
     create,
     getBusinessByName,
+    updateBusinessById,
 };

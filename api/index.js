@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-const { auth, migration } = require("./controllers");
+const { auth, migration, business } = require("./controllers");
 const app = express();
 const port = process.env.PORT || 3000;
 const jwt = require("jsonwebtoken");
@@ -49,6 +49,7 @@ app.post("/api/v1/business/new", auth.register);
 app.post("/api/v1/account/login", auth.login);
 
 app.post("/api/v1/account/update", verifyToken, auth.update);
+app.post("/api/v1/business/update", verifyToken, business.update);
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);

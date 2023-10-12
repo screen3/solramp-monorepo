@@ -14,7 +14,6 @@ const getUserByUsernamePassword = async (email, password) => {
                     reject(error);
                 }
 
-                console.log(results);
                 resolve(results);
             }
         );
