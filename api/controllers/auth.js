@@ -1,8 +1,47 @@
 const Joi = require("joi");
 const model = require("../db/model");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
-const login = function (req, res) {
-    return res.send("Login");
+const login = async function (req, res) {
+    const found = await model.user.getUserByUsernamePassword(
+        req.body.email,
+        req.body.password
+    );
+
+    if (found.length > 0) {
+        const user = found[0];
+
+        const match = bcrypt.compareSync(req.body.password, user.password);
+
+        if (!match) {
+            return res.status(400).json({
+                status: "error",
+                message: "Invalid username or password",
+            });
+        }
+
+        delete user.password;
+
+        jwt.sign({ user }, process.env.JWT_SECRET, (err, token) => {
+            if (err) {
+                return res.status(400).json({
+                    status: "error",
+                    message: err.message,
+                });
+            } else {
+                return res.json({
+                    token: token,
+                    user: user,
+                });
+            }
+        });
+    } else {
+        return res.status(400).json({
+            status: "error",
+            message: "Invalid username or password",
+        });
+    }
 };
 
 const register = async function (req, res) {
