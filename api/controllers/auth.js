@@ -5,7 +5,7 @@ const login = function (req, res) {
     return res.send("Login");
 };
 
-const register = function (req, res) {
+const register = async function (req, res) {
     const schema = Joi.object({
         business_name: Joi.string().min(3).required(),
         representative_email: Joi.string().email().required(),
@@ -23,6 +23,17 @@ const register = function (req, res) {
         return res.status(400).json({
             status: "error",
             message: error.details[0].message,
+        });
+    }
+
+    const found = await model.business.getBusinessByName(
+        req.body.business_name
+    );
+
+    if (found.length > 0) {
+        return res.status(400).json({
+            status: "error",
+            message: "Business already exists",
         });
     }
 
