@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Pricing() {
   return (
-    <section className="py-20 bg-[#2A034D]">
+    <section className="py-20 bg-[#2A034D]" id="pricing">
       <div className="container py-5">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-8 items-center">
           <div className="flex flex-col gap-3 text-white">
