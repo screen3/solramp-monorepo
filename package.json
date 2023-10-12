@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "antd-country-phone-input": "^4.5.1"
+  }
+}
