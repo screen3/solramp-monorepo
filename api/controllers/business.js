@@ -29,6 +29,19 @@ const update = async function (req, res) {
     });
 };
 
+const owner = async function (req, res) {
+    const rep = await model.business.getBusinessOwner(req.auth.user.company_id);
+
+    if (rep.length > 0) {
+        delete rep?.[0].password;
+    }
+    return res.json({
+        status: "ok",
+        owner: rep?.[0],
+    });
+};
+
 module.exports = {
     update,
+    owner,
 };
