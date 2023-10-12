@@ -5,6 +5,25 @@ const cors = require("cors");
 const { auth, migration } = require("./controllers");
 const app = express();
 const port = process.env.PORT || 3000;
+const jwt = require("jsonwebtoken");
+const verifyToken = (req, res, next) => {
+    const bearerHeader = req.headers["authorization"];
+    if (typeof bearerHeader !== "undefined") {
+        const bearerToken = bearerHeader.split(" ")[1];
+        req.token = bearerToken;
+
+        jwt.verify(bearerToken, process.env.JWT_SECRET, (err, authData) => {
+            if (err) {
+                res.sendStatus(403);
+            } else {
+                req.auth = authData;
+                next();
+            }
+        });
+    } else {
+        res.sendStatus(403);
+    }
+};
 
 const corsOptions = {
     origin: process.env.FRONT_URL,
@@ -28,6 +47,8 @@ app.post("/api/v1/health", (req, res) => {
 app.post("/api/v1/migration", migration.run);
 app.post("/api/v1/business/new", auth.register);
 app.post("/api/v1/account/login", auth.login);
+
+app.post("/api/v1/account/update", verifyToken, auth.update);
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);

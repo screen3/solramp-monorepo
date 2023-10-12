@@ -6,7 +6,6 @@ const getUserByUsernamePassword = async (email, password) => {
         const saltRounds = 10;
         const hashedPassword = bcrypt.hashSync(password, saltRounds);
 
-        console.log(email, hashedPassword);
         conn.query(
             "SELECT * FROM users WHERE email = ? ",
             [email],
@@ -22,6 +21,29 @@ const getUserByUsernamePassword = async (email, password) => {
     });
 };
 
+const updateUserByEmail = async (email, data) => {
+    return new Promise((resolve, reject) => {
+        conn.query(
+            "UPDATE users SET firstname = ?, lastname = ?, phone = ?, country_iso2_code = ? WHERE email = ?",
+            [
+                data.firstname,
+                data.lastname,
+                data.phone,
+                data.country_iso2_code,
+                email,
+            ],
+            function (error, results, fields) {
+                if (error) {
+                    reject(error);
+                }
+
+                resolve(results);
+            }
+        );
+    });
+};
+
 module.exports = {
     getUserByUsernamePassword,
+    updateUserByEmail,
 };
