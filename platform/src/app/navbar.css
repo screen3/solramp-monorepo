@@ -1,0 +1,117 @@
+.menu {
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+.menu-title {
+  display: block;
+  transition: 0.3s background-color;
+}
+.menu-title:before {
+  content: '';
+  display: block;
+  height: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 101;
+  transition: 0.2s 0.2s border-top ease-out, 0.3s border-top-color;
+}
+.menu:hover > .menu-title:before {
+  border-top-width: 0;
+  transition: 0.2s border-top-width ease-in, 0.3s border-top-color;
+}
+.menu-title:after {
+  content: '';
+  display: block;
+  height: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 101;
+  transition: 0.2s border-bottom ease-in;
+}
+.menu:hover > .menu-title:after {
+  transition: 0.2s 0.2s border-bottom-width ease-out;
+}
+.menu-dropdown {
+  width: 250px;
+  max-width: 250px;
+  padding: 15px 0;
+  position: absolute;
+  background: #fff;
+  margin-left: 0px;
+  margin-top: 10px;
+  z-index: 100;
+  transition: 0.5s padding, 0.5s width;
+  box-shadow: 0 0 2px 1px rgb(225, 222, 222);
+  border-radius: 5px;
+  /* box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);*/
+  border-bottom: 1px solid #F8F8F8;
+}
+.menu-dropdown li {
+    padding: 5px 15px;
+    border-radius: 8px;
+}
+.menu-dropdown li:hover {
+    background: #F8F8F8;
+}
+.menu-dropdown:after {
+  content: '';
+  display: block;
+  height: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 101;
+  transition: 0.5s border-top;
+}
+.menu:not(:hover) > .menu-dropdown {
+  padding: 0;
+  box-shadow: none;
+  z-index: 99;
+  /* display: none; */
+}
+.menu:not(:hover) > .menu-dropdown2 {
+  padding: 0px 0;
+  z-index: 99;
+  box-shadow: none;
+}
+.menu-dropdown > * {
+  overflow: hidden;
+  height: fit-content;
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0);
+  transition: 0.5s height cubic-bezier(0.73, 0.32, 0.34, 1.5),
+    0.5s padding cubic-bezier(0.73, 0.32, 0.34, 1.5),
+    0.5s margin cubic-bezier(0.73, 0.32, 0.34, 1.5), 0.5s 0.2s color,
+    0.2s background-color;
+}
+.menu-dropdown2 > * {
+  overflow: hidden;
+  height: fit-content;
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0);
+  white-space: nowrap;
+  transition: 0.5s height cubic-bezier(0.73, 0.32, 0.34, 1.5),
+    0.5s padding cubic-bezier(0.73, 0.32, 0.34, 1.5),
+    0.5s margin cubic-bezier(0.73, 0.32, 0.34, 1.5), 0.5s 0.2s color,
+    0.2s background-color;
+}
+.menu-dropdown > *:hover {
+  /* background: rgba(0, 0, 0, 0.1); */
+}
+.menu-dropdown2 > *:hover {
+  /* background: rgba(0, 0, 0, 0.1); */
+}
+.menu:not(:hover) > .menu-dropdown > * {
+  visibility: hidden;
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0;
+  color: rgba(25, 25, 25, 0);
+  transition: 0.5s 0.1s height, 0.5s 0.1s padding, 0.5s 0.1s margin, 0.3s color,
+    0.6s visibility;
+  z-index: 99;
+}

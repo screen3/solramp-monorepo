@@ -2,12 +2,13 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import '../../navbar.css';
 
 const Navbar = () => {
   return (
     <>
       <header className="shadow-header shadow-slate-300 shadow-sm z-50">
-        <div className="container mx-auto max-w-7xl">
+        <div className="container mx-auto">
           <nav className="flex  flex-wrap items-center justify-between px-6 py-4">
             <div className="lg:order-1 w-auto lg:w-1/4 lg:text-center">
               <Link
@@ -24,7 +25,7 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="block lg:hidden">
-              <button className="navbar-burger flex items-center py-2 px-3 text-indigo-500  rounded relative transition-all duration-150 ease-linear ">
+              <button className="navbar-burger flex items-center py-2 px-3 text-[#11161F]  rounded relative transition-all duration-150 ease-linear ">
                 menu
               </button>
             </div>
@@ -32,31 +33,66 @@ const Navbar = () => {
               <div className="navbar-menu flex items-center justify-end gap-4  ">
                 <Link
                   href="/"
-                  className="block lg:inline-block mt-4 lg:mt-0 text-blue-900 hover:text-indigo-600 px-5 "
+                  className="block lg:inline-block mt-4 lg:mt-0 text-[#11161F]  px-5 menu relative"
                 >
                   Features
                 </Link>
-                <Link
-                  href="/"
-                  className="block lg:inline-block mt-4 lg:mt-0 text-blue-900 hover:text-indigo-600 px-5 "
-                >
+                <div className="block lg:inline-block mt-4 lg:mt-0 text-[#11161F] px-5 menu relative cursor-default">
                   Integration
-                </Link>
-                <Link
+                  <div className="menu-dropdown">
+                    <ul className="space-y-3 text-left text-[#344054] text-base">
+                      <li>
+                        <Link href={'/'}>React SDK</Link>
+                      </li>
+                      <li className="flex items-center justify-between">
+                        Vue SDK{' '}
+                        <span className="text-[11px] text-[#009D2D] bg-[#E7FFEE] rounded-full px-3 py-[0.125px]">
+                          coming soon
+                        </span>
+                      </li>
+                      <li className="flex items-center justify-between">
+                        Shopify{' '}
+                        <span className="text-[11px] text-[#009D2D] bg-[#E7FFEE] rounded-full px-3 py-[0.125px]">
+                          coming soon
+                        </span>
+                      </li>
+                      <li className="flex items-center justify-between">
+                        Wordpress{' '}
+                        <span className="text-[11px] text-[#009D2D] bg-[#E7FFEE] rounded-full px-3 py-[0.125px]">
+                          coming soon
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div
                   href="/"
-                  className="block lg:inline-block mt-4 lg:mt-0 text-blue-900 hover:text-indigo-600 px-5 "
+                  className="block lg:inline-block mt-4 lg:mt-0 text-[#11161F] px-5 menu relative cursor-default "
                 >
                   Developer Docs
-                </Link>
+                  <div className="menu-dropdown">
+                    <ul className="space-y-3 text-left text-[#344054] text-base">
+                      <li>
+                        <Link href={'/'}>Documentation</Link>
+                      </li>
+                      <li className="flex items-center justify-between">
+                        <Link href={'/'}>Integration</Link>
+                      </li>
+                      <li className="flex items-center justify-between">
+                        <Link href={'/'}>Video Tutorials</Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
                 <Link
                   href="/"
-                  className="block lg:inline-block mt-4 lg:mt-0 text-blue-900 hover:text-indigo-600 px-5 "
+                  className="block lg:inline-block mt-4 lg:mt-0 text-[#11161F] px-5 "
                 >
                   Support
                 </Link>
                 <Link
                   href="/"
-                  className="block lg:inline-block mt-4 lg:mt-0 text-blue-900 hover:text-indigo-600 px-5 "
+                  className="block lg:inline-block mt-4 lg:mt-0 text-[#11161F] px-5 "
                 >
                   Pricing
                 </Link>

@@ -16,8 +16,8 @@ export default function Home() {
       <main>
         <div className="bg-white py-20 hero">
           <div className="container mx-auto max-w-7xl ">
-            <div className="flex flex-col items-center justify-center gap-x-5 gap-y-12 max-w-3xl mx-auto">
-              <div className="text-center container">
+            <div className="flex flex-col items-center justify-center gap-x-5 gap-y-12 ">
+              <div className="text-center container max-w-3xl mx-auto">
                 <div>
                   <h1 className="text-5xl font-extrabold text-[#351F0F]">
                     Checkout with Solramp
@@ -31,9 +31,9 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <div className="">
-                <div className="pricing_box py-4 px-3 text-[#474545] rounded-lg border border-[#EFEFEF] ">
-                  <div className="py-2 px-4">
+              <div className=" w-full max-w-3xl mx-auto">
+                <div className="pricing_box py-4 px-3 text-[#474545] rounded-lg border border-[#EFEFEF]">
+                  <div className="py-2 px-4 w-full">
                     <form>
                       <div className="flex flex-col gap-4">
                         <div>

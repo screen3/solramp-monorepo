@@ -55,14 +55,18 @@ const Sidebar = () => {
                   height={40}
                   width={30}
                   className="transition 300ms ease object-contain"
-                  property="high"
+                  priority
+                  alt='logo'
+
                 />
                 <Image
                   src="/logo/Ramp.svg"
                   height={100}
                   width={70}
                   className="transition 300ms ease object-contain"
-                  property="high"
+                  priority
+                  alt='logo'
+
                 />
                 {/* <Logo className="transition 300ms ease" /> */}
               </Link>

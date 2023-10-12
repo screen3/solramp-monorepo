@@ -35,3 +35,7 @@ textarea::-webkit-scrollbar {
 .hero .pricing_box{
   box-shadow: 0px 4px 28px 0px rgba(50, 49, 49, 0.03);
 }
+
+.wallet_card{
+  background-color: radial-gradient(197.78% 78.1% at 48.06% 0%, rgba(159, 87, 224, 0.78) 0%, #B9FFCD 100%);
+}
