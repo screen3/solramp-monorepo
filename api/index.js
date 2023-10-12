@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-const { auth } = require("./controllers");
+const { auth, migration } = require("./controllers");
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -25,6 +25,7 @@ app.post("/api/v1/health", (req, res) => {
     });
 });
 
+app.post("/api/v1/migration", migration.run);
 app.post("/api/v1/business/new", auth.register);
 app.post("/api/v1/account/login", auth.login);
 

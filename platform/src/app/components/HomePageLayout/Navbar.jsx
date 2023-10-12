@@ -94,7 +94,7 @@ const Navbar = () => {
                   href="/"
                   className="block lg:inline-block mt-4 lg:mt-0 text-[#11161F] px-5"
                 >
-                  Pricing ↗
+                  Pricing
                 </Link>
                 <Link
                   className="block lg:inline-block mt-4 lg:mt-0 text-white hover:text-[#A15DDF] hover:bg-white  hover:border-[#A15DDF] hover:border  border border-[#A15DDF] bg-[#A15DDF] rounded-full px-6 py-2 transition duration-300 ease text-sm"
