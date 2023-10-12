@@ -92,7 +92,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   href="/"
-                  className="block lg:inline-block mt-4 lg:mt-0 text-[#11161F] px-5 "
+                  className="block lg:inline-block mt-4 lg:mt-0 text-[#11161F] px-5"
                 >
                   Pricing ↗
                 </Link>
