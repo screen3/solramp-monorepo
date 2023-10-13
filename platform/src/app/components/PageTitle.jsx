@@ -11,9 +11,9 @@ export const PageTitle = ({ title, submenu }) => {
         </>
       ) : (
         <div className=" py-4 mb-6">
-          <div className='flex items-center justify-start'>
+          <div className='flex items-center justify-start gap-3'>
             <h1 className="text-xl font-normal title ">{title}</h1>
-                <span>...</span>
+                <span >&gt;</span>
             <h1 className="text-2xl font-medium title">{submenu}</h1>
           </div>
         </div>

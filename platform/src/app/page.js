@@ -14,8 +14,8 @@ export default function Home() {
       <Navbar />
 
       <main>
-        <div className="bg-white py-20 hero">
-          <div className="container mx-auto max-w-7xl ">
+        <div className="bg-[#FCF9FF] py-20 hero relative">
+          <div className="container mx-auto max-w-7xl z-20">
             <div className="flex flex-col items-center justify-center gap-x-5 gap-y-12 ">
               <div className="text-center container max-w-3xl mx-auto">
                 <div>
@@ -31,10 +31,10 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <div className=" w-full max-w-3xl mx-auto">
-                <div className="pricing_box py-4 px-3 text-[#474545] rounded-lg border border-[#EFEFEF]">
-                  <div className="py-2 px-4 w-full">
-                    <form>
+              <div className=" w-full max-w-3xl mx-auto z-20 bg-white">
+                <div className="pricing_box py-4 px-3 text-[#474545] rounded-lg border border-[#EFEFEF] z-20">
+                  <div className="py-2 px-4 w-full z-20">
+                    <form className='z-20'>
                       <div className="flex flex-col gap-4">
                         <div>
                           <label className="font-medium mb-3" htmlFor="amount">
@@ -117,6 +117,15 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          <div className='w-full h-full block absolute top-0 left-0 pointer-events-none'>
+            <Image
+              src={'/images/MinimalPattern.svg'}
+              fill
+              className="w-full h-full object-cover"
+              alt="pattern"
+            />
+          </div>
         </div>
 
         <YouInMind />
@@ -125,7 +134,7 @@ export default function Home() {
         <CTA />
       </main>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }
