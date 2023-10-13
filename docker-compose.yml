@@ -1,6 +1,6 @@
 version: '3'
 services:
-  platform:
+  popup:
     build:
       context: ./platform
       dockerfile: Dockerfile
@@ -10,7 +10,7 @@ services:
     depends_on:
       - db
       - backend
-  popup:
+  platform:
     build:
       context: ./platform
       dockerfile: Dockerfile
