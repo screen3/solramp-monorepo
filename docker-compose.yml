@@ -2,7 +2,7 @@ version: '3'
 services:
   popup:
     build:
-      context: ./platform
+      context: ./widget
       dockerfile: Dockerfile
     container_name: solramp-platform
     ports:
