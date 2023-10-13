@@ -4,7 +4,7 @@ services:
     build:
       context: ./widget
       dockerfile: Dockerfile
-    container_name: solramp-platform
+    container_name: solramp-popup
     ports:
       - "7000:3000"
     depends_on:
