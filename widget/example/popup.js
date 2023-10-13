@@ -72,7 +72,7 @@ window.popup = class Popup {
 
 		this.iframe.contentWindow?.postMessage({
 			data: this.data,
-			action: "data"
+			action: "popup:data"
 		}, "http://localhost:3000");
 
 		// Set the width and height of the iframe
@@ -94,7 +94,7 @@ window.popup = class Popup {
 
 		this.iframe.onload = () => this.iframe.contentWindow?.postMessage({
 			options: this.options,
-			action: "options"
+			action: "popup:options"
 		}, "http://localhost:3000");
 
 

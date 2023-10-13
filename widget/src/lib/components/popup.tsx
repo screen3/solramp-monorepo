@@ -6,15 +6,16 @@ import Api, {Ad, Fiat, Token} from "../api";
 
 const api = new Api();
 
-type Option = {
+type Method = {
   index: Keys;
   name: string;
   icon: IconNames;
   iconActive: IconNames;
-  active?: string
-  onClick?: () => void
+  active?: boolean
+  handleClick?: () => void
 };
-const options: Option[] = [{
+
+const methods: Method[] = [{
   name: "Transfer",
   icon: "bank",
   index: "bank",
@@ -31,15 +32,21 @@ const options: Option[] = [{
   iconActive: "active-wise",
 }];
 
-
 export default function Popup(props: PopupProps) {
-  const [selectedOption, setSelectedOption] = useState<Keys>("qr")
+  const [another, setAnother] = useState<Keys>()
+  const [selectedMethod, setSelectedMethod] = useState<Keys>("qr")
 
   const [token, setToken] = useState<Token>()
   api.fetchToken(props.splToken).then(r => setToken(r))
 
   const [fiat, setFiat] = useState<Fiat>()
   api.fetchFiat(props.fiat).then(r => setFiat(r))
+
+  useEffect(() => {
+    setAnother("qr")
+    console.log("effect")
+  }, [])
+
 
   return (
     <>
@@ -88,8 +95,16 @@ export default function Popup(props: PopupProps) {
                       }}>pay with</h3>
                     </div>
                     <nav>
-                      { options.map((option) =>
-                        <NavButton {...option} active={selectedOption} key={option.index} onClick={() => setSelectedOption(option.index)}/>) }
+                      {/*<NavButton index={methods[0].index} name={methods[0].name} icon={methods[0].icon}*/}
+                      {/*           iconActive={methods[0].iconActive}*/}
+                      {/*           active={methods[0].index === selectedMethod}*/}
+                      {/*           handleClick={() => {*/}
+                      {/*             console.log("bank")*/}
+                      {/*           }}/>*/}
+                      {/*{ methods.map((option, id) =>*/}
+                      {/*  <NavButton {...option} active={selectedMethod} key={id} handleClick={() => {*/}
+                      {/*    setSelectedMethod(option.index)*/}
+                      {/*  }}/>) }*/}
                     </nav>
                   </div>
 
@@ -112,7 +127,15 @@ export default function Popup(props: PopupProps) {
                       </div>
                     </div>
                     <div className="main-body">
-                      <OptionsSwitcher type={selectedOption} options={props}/>
+                      <button onClick={() => {
+                        console.log("bank")
+                        setAnother("bank")
+                      }}>test</button>
+                      <button onClick={() => {
+                        console.log("qr")
+                        setAnother("qr")
+                      }}>qr</button>
+                      {/*<OptionsSwitcher type={selectedMethod} options={props}/>*/}
                     </div>
                   </div>
                 </div>
@@ -138,13 +161,13 @@ function OptionsSwitcher(props: {type: Keys, options: PopupProps}) {
 }
 
 function QR({options}: {options: PopupProps}) {
-  useEffect(() => {
+  // useEffect(() => {
     // solPayQrDataUrl(options)
     //   .then(() => {
     //
     //   })
     //   .catch(() => {})
-  }, [])
+  // }, [])
   // const imageRef = useRef<HTMLImageElement>();
   return <>
     <div className="" style={{display: "flex", justifyContent: "center", margin: "20px 0"}}>
@@ -166,19 +189,21 @@ function QR({options}: {options: PopupProps}) {
 }
 
 function Wise({options}: {options: PopupProps}) {
+  const [ad, setAd] = useState<Ad|undefined>()
+  api.fetchAd({token: options.splToken, fiat: options.fiat, method: "wise"}).then((ad) => setAd(ad))
+
   return <>
     <div className="main-body-title">Pay with Wise (formerly TransferWise)</div>
     <div className="main-account-details">
       <div className="field">
-        <div className="field-label">Email</div>
-        <div className="field-value">emarjay921@gmail.com</div>
+        <div className="field-label">EMAIL</div>
+        <div className="field-value">{ad?.seller?.email}</div>
       </div>
       <div className="field">
         <div className="field-label">ACCOUNT NAME</div>
-        <div className="field-value">Emmanuel Joseph</div>
+        <div className="field-value">{ad?.seller?.account_name}</div>
       </div>
     </div>
-
   </>;
 }
 
@@ -202,17 +227,16 @@ function BankTransfer({options}: {options: PopupProps}) {
       </div>
     </div>
     <div className="main-description">
-      <p className="text-description">Search for Paystack-Titan or Titan-Paystack on your bank app. Use this
-        account for this transaction only</p>
+      <p className="text-description">Use this account for this transaction only</p>
     </div>
     <button className="main-button-transparent">I've sent the money</button>
   </>;
 }
 
-function NavButton (props: Option) {
-  return <button className={"payment-method-button"} onClick={props.onClick}>
+function NavButton (props: Method) {
+  return <button className={"payment-method-button"} onClick={props.handleClick}>
     <span className="icon small">
-      <Icons name={props.active === props.index ? props.iconActive : props.icon}/>
+      <Icons name={props.active ? props.iconActive : props.icon}/>
     </span>
     <span className="payment-method-button-text">{props.name}</span>
   </button>

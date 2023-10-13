@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-type Message = { action: "options" | "data", data: ShowPopupOptions, options: SolOptions };
+type Message = { action: "popup:options" | "popup:data", data: ShowPopupOptions, options: SolOptions };
 
 function App() {
   const [show, setShow] = useState(false);
@@ -17,15 +17,13 @@ function App() {
   const [options, setOptions] = useState<SolOptions>({recipient: "32032092309"})
 
   useEffect(() => {
+    window.postMessage({"data": {amount: "20000", customer_email: "bose@mailinator.com", fiat: "AED"}, action: "popup:data"})
     window.addEventListener('message', (event: MessageEvent<Message>) => {
-
-      console.log(event.data)
-      // The data received from the parent window
       const data = event.data;
-      if (data?.action === "options") {
+      if (data?.action === "popup:options") {
         setOptions(data.options)
       }
-      if (data?.action === "data") {
+      if (data?.action === "popup:data") {
         setOpenOptions(data.data)
         setShow(true);
       }
