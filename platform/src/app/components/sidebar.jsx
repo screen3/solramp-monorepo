@@ -3,9 +3,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import classNames from 'classnames';
-import { Profile2User, RecordCircle } from 'iconsax-react';
+import { ArrowDown2, ArrowDown3, Buildings, Profile2User, RecordCircle } from 'iconsax-react';
 import Image from 'next/image';
-import { Category } from 'react-iconly';
+import { ArrowDown, Category } from 'react-iconly';
 
 const Sidebar = () => {
   const [isCollapsible, setIsCollapsible] = useState(true);
@@ -56,8 +56,7 @@ const Sidebar = () => {
                   width={30}
                   className="transition 300ms ease object-contain"
                   priority
-                  alt='logo'
-
+                  alt="logo"
                 />
                 <Image
                   src="/logo/Ramp.svg"
@@ -65,8 +64,7 @@ const Sidebar = () => {
                   width={70}
                   className="transition 300ms ease object-contain"
                   priority
-                  alt='logo'
-
+                  alt="logo"
                 />
                 {/* <Logo className="transition 300ms ease" /> */}
               </Link>
@@ -74,6 +72,19 @@ const Sidebar = () => {
           </div>
           <nav className="mt-6 md:mt-3 grow ">
             <div className=" flex-wrap px-4">
+              <div className="bg-[#F2F4F7] px-5 py-4 mb-3 rounded-lg">
+                <button className='flex items-start justify-between w-full'>
+                  <div className='flex items-start justify-start gap-2'>
+                    <Buildings variant="Outline" size={16} className='mt-1 text-[#A15DDF]'  />
+                    <div className='flex items-start flex-col'>
+                      <span className='text-[#11161F] text-sm font-medium'>Business name</span>
+                      <span className='text-[#909295] text-xs '>1432665</span>
+                    </div>
+                  </div>
+
+                  <ArrowDown2 variant='Outline' size={12} className='text-[#81899E]'/>
+                </button>
+              </div>
               {menuLinks.map((menuItem) => (
                 <Link
                   key={menuItem.label}

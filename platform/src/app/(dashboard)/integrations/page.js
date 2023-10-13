@@ -6,6 +6,8 @@ import { CopyIcon } from '../../components/IconComponent';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Link from 'next/link';
 import { Textarea } from '@chakra-ui/react';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const Integrations = () => {
   const Text = `// SPDX-License-Identifier: MIT
@@ -47,14 +49,18 @@ const Integrations = () => {
   const onChange = React.useCallback(({ target: { value } }) => {
     setValue(value);
     setCopied(true);
+    toast.success('Successfully copied!')
+
   }, []);
 
   const onCopy = React.useCallback(() => {
     setCopied(true);
+    toast.success('Successfully copied!')
   }, []);
 
   return (
     <div>
+      <Toaster/>
       <PageTitle title={'Integrations'} />
 
       <MainComponent>
@@ -79,13 +85,12 @@ const Integrations = () => {
               </ul>
             </div>
 
-            <div className='border border-[#DADADA] rounded-lg p-3 relative'>
+            <div className="border border-[#DADADA] rounded-lg p-3 relative">
               <textarea
                 onChange={onChange}
                 rows={8}
                 className="w-full py-3 px-3 resize-none focus:border-none focus-within:border-none active:border-none focus-visible:border-none focus:outline-none focus-within:outline-none active:outline-none focus-visible:outline-none"
-                value={value}
-                
+                value={value} readOnly
               ></textarea>
               {/* <Textarea
                 value={value}
@@ -101,7 +106,7 @@ const Integrations = () => {
                 text={value}
                 className="text-sm rounded-lg absolute right-0 bottom-0 px-3 py-3 bg-white flex items-center gap-2 border-l border-t border-[#D0D5DD] text-[#A15DDF]"
               >
-                <button className=''>
+                <button className="">
                   <CopyIcon />
                   <span> {copied ? 'Copied' : 'Copy to Clipboard'}</span>
                 </button>
