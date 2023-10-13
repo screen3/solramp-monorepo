@@ -1,7 +1,7 @@
-'use client';
-import React from 'react';
-import SignUpForm from '../../components/Forms/SignUpForm';
-import Link from 'next/link';
+"use client";
+import React from "react";
+import SignUpForm from "../../components/Forms/SignUpForm";
+import Link from "next/link";
 
 export default function SignUp() {
   return (
@@ -13,8 +13,8 @@ export default function SignUp() {
               Create an account
             </h1>
             <p className="text-sm ">
-              Already have an account?{' '}
-              <Link href={'/auth/login'} className="text-[#A15DDF]">
+              Already have an account?{" "}
+              <Link href={"/auth/login"} className="text-[#A15DDF]">
                 Log in
               </Link>
             </p>

@@ -1,9 +1,37 @@
-import React from 'react';
+"use client";
+import React, { useState } from "react";
+import { useLoginUserMutation } from "@/src/redux/services/userApi";
 
 const LoginForm = () => {
+  const [userDetails, setUserDetails] = useState({
+    email: "",
+    password: "",
+  });
+  const [loginUser] = useLoginUserMutation();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserDetails((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    loginUser(userDetails)
+      .unwrap()
+      .then(() => {})
+      .then((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
-      <form action="#" className="mt-5">
+      <form action="#" className="mt-5" onSubmit={handleSubmit}>
         <div className="flex flex-col mb-2 gap-6">
           <div>
             <label className="text-gray-700 font-bolder mb-3" htmlFor="email">
@@ -16,6 +44,8 @@ const LoginForm = () => {
               name="email"
               min="3"
               autoComplete="off"
+              value={userDetails.email}
+              onChange={handleChange}
             />
           </div>
           <div>
@@ -28,6 +58,8 @@ const LoginForm = () => {
               className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300  rounded-md  focus:outline-none focus:ring-none focus:border-gray-400 h-[42px]"
               name="password"
               autoComplete="off"
+              value={userDetails.password}
+              onChange={handleChange}
             />
           </div>
         </div>
