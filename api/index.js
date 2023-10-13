@@ -50,6 +50,7 @@ app.post("/api/v1/account/login", auth.login);
 
 app.post("/api/v1/account/update", verifyToken, auth.update);
 app.post("/api/v1/business/update", verifyToken, business.update);
+app.get("/api/v1/business/owner", verifyToken, business.owner);
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);

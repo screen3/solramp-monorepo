@@ -139,8 +139,25 @@ const updateBusinessById = async (businessId, data) => {
     });
 };
 
+const getBusinessOwner = async (business_id) => {
+    return new Promise((resolve, reject) => {
+        conn.query(
+            "SELECT * FROM businesses INNER JOIN users ON businesses.representative_id = users.id WHERE businesses.id = ?",
+            [business_id],
+            function (error, results, fields) {
+                if (error) {
+                    reject(error);
+                }
+
+                resolve(results);
+            }
+        );
+    });
+};
+
 module.exports = {
     create,
     getBusinessByName,
     updateBusinessById,
+    getBusinessOwner,
 };

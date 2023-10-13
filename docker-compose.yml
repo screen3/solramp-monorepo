@@ -1,0 +1,27 @@
+version: '3'
+services:
+  web:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: solramp-api
+    ports:
+      - "7000:3000"
+    environment:
+      DB_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: mydb
+      DB_NAME: mydb
+      JWT_SECRET: f2e61dd95af62e2f2d17bd224c4a2458
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    container_name: my-mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mydb
+    ports:
+      - "7306:3306"
