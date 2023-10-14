@@ -118,4 +118,45 @@ const FacebookIcon = () => {
   );
 };
 
-export { SettingIcon, LogoutIcon, CopyIcon, FacebookIcon };
+const AlertTriangle = () => {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9.99965 6.66661V9.99995M9.99965 13.3333H10.008M8.57465 2.38328L1.51632 14.1666C1.37079 14.4186 1.29379 14.7044 1.29298 14.9954C1.29216 15.2864 1.36756 15.5726 1.51167 15.8254C1.65579 16.0782 1.86359 16.2889 2.11441 16.4365C2.36523 16.5841 2.65032 16.6634 2.94132 16.6666H17.058C17.349 16.6634 17.6341 16.5841 17.8849 16.4365C18.1357 16.2889 18.3435 16.0782 18.4876 15.8254C18.6317 15.5726 18.7071 15.2864 18.7063 14.9954C18.7055 14.7044 18.6285 14.4186 18.483 14.1666L11.4247 2.38328C11.2761 2.13837 11.0669 1.93588 10.8173 1.79535C10.5677 1.65482 10.2861 1.58099 9.99965 1.58099C9.71321 1.58099 9.43159 1.65482 9.18199 1.79535C8.93238 1.93588 8.72321 2.13837 8.57465 2.38328Z"
+        stroke="#DC6803"
+        strokeWidth="1.66667"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+const CloseIcon = () => {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="x">
+        <path
+          id="Icon"
+          d="M15 5L5 15M5 5L15 15"
+          stroke="#B54708"
+          strokeWidth="1.67"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
+    </svg>
+  );
+};
+export { SettingIcon, LogoutIcon, CopyIcon, FacebookIcon, AlertTriangle, CloseIcon};

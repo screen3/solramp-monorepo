@@ -54,7 +54,7 @@ const Sidebar = () => {
                   src="/logo/mainLogo.svg"
                   height={40}
                   width={30}
-                  className="transition 300ms ease object-contain"
+                  className="transition 300ms ease object-contain w-auto h-auto"
                   priority
                   alt="logo"
                 />
@@ -62,7 +62,7 @@ const Sidebar = () => {
                   src="/logo/Ramp.svg"
                   height={100}
                   width={70}
-                  className="transition 300ms ease object-contain"
+                  className="transition 300ms ease object-contain w-auto h-auto"
                   priority
                   alt="logo"
                 />

@@ -27,6 +27,10 @@ textarea::-webkit-scrollbar {
 
 }
 
+.random_color{
+  background: rgba(255, 255, 255, 0.31);
+}
+
 .pricing_box{
   background: rgba(255, 255, 255, 0.31);
   padding: 33px 24px 47px 23px;

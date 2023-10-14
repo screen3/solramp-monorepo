@@ -9,6 +9,7 @@ import { Dropdown, Space } from 'antd';
 import toast, { Toaster } from 'react-hot-toast';
 import AnalyticsChart from '../../components/Charts/AnalyticsChart';
 import Link from 'next/link';
+import Notification from '../../components/Notification';
 
 const Dashboard = () => {
   const address = 'HN7cABqLq23RV4V5455EL4YWrH';
@@ -25,15 +26,18 @@ const Dashboard = () => {
   return (
     <>
       <Toaster />
+      <Notification/>
+
       <div>
+
         <PageTitle title={'Dashboard'} />
 
-        <section>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 py-5 w-full gap-5 ">
+        <MainComponent>
+          <div className="grid grid-cols-1 py-3 w-full gap-5 ">
             <div className="shadow-3xl  bg-white rounded-lg border border-[#F2F1F1]">
               <AnalyticsChart data={data} />
             </div>
-            <div className=" ">
+            {/* <div className=" ">
               <div className="bg-white shadow-3xl  py-4 mb-4  px-2 md:px-5 rounded-lg border border-[#F2F1F1]">
                 <div className="w-full wallet_card rounded-lg h-58 h-60 bg-slate-500">
                   <div className="py-5 h-full text-white">
@@ -76,7 +80,6 @@ const Dashboard = () => {
                       <button className="">
                         <h6>HN7cABqLq.....EL4YWrH</h6>
                         <CopyIcon className={`h-4 w-4`} />
-                        {/* <span className={`${copied ? 'text-[#08B639]':''}`}> {copied ? 'Copied' : ''}</span> */}
                       </button>
                     </CopyToClipboard>
                   </div>
@@ -85,9 +88,9 @@ const Dashboard = () => {
                   </Link>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
-        </section>
+        </MainComponent>
       </div>
     </>
   );

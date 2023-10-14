@@ -66,7 +66,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="flex items-center justify-between gap-3 divide-x ">
-                  <div className="">
+                  <div className="cursor-pointer">
                     <Dropdown
                       menu={{
                         items,

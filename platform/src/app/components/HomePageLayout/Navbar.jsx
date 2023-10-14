@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import '../../navbar.css';
+import { ArrowDown, ArrowDown2 } from 'iconsax-react';
 
 const Navbar = () => {
   return (
@@ -21,6 +22,7 @@ const Navbar = () => {
                   height={100}
                   alt="logo"
                   priority
+                  className='w-auto h-auto'
                 />
               </Link>
             </div>
@@ -38,17 +40,16 @@ const Navbar = () => {
                   Features
                 </Link>
                 <div className="block lg:inline-block mt-4 lg:mt-0 text-[#11161F] px-5 menu relative cursor-default">
-                  Integration
+                  <span className="items-center flex justify-between gap-2">
+                    Integration <ArrowDown2 variant="Linear" size={12} />
+                  </span>
                   <div className="menu-dropdown">
                     <ul className="space-y-3 text-left text-[#344054] text-base">
                       <li>
-                        <Link href={'/'}>React SDK</Link>
+                        <Link href={'/integrations'}>React SDK</Link>
                       </li>
                       <li className="flex items-center justify-between">
-                        Vue SDK{' '}
-                        <span className="text-[11px] text-[#009D2D] bg-[#E7FFEE] rounded-full px-3 py-[0.125px]">
-                          coming soon
-                        </span>
+                        <Link href={'/integrations'}>Vue SDK</Link>
                       </li>
                       <li className="flex items-center justify-between">
                         Shopify{' '}
@@ -65,11 +66,11 @@ const Navbar = () => {
                     </ul>
                   </div>
                 </div>
-                <div
-                  href="/"
-                  className="block lg:inline-block mt-4 lg:mt-0 text-[#11161F] px-5 menu relative cursor-default "
-                >
-                  Developer Docs
+                <div className="block lg:inline-block mt-4 lg:mt-0 text-[#11161F] px-5 menu relative cursor-default ">
+                  <span className="items-center flex justify-between gap-2">
+                    Developer Docs <ArrowDown2 variant="Linear" size={12} />
+                  </span>
+
                   <div className="menu-dropdown">
                     <ul className="space-y-3 text-left text-[#344054] text-base">
                       <li>

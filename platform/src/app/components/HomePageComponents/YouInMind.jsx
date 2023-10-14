@@ -6,13 +6,13 @@ export default function YouInMind() {
     return (
         <section className="py-20" id="features">
             <div className="">
-                <div className="mb-9 text-center max-w-md mx-auto text-[#1A202B]">
-                    <h2 className=" text-4xl h2 mb-4 font-semibold">
+                <div className="text-center max-w-md mx-auto text-[#1A202B]">
+                    <h2 className=" text-4xl h2 font-semibold">
                         Keeping you in mind
                     </h2>
                 </div>
 
-                <div className="flex items-center justify-between flex-wrap gap-y-8">
+                <div className="flex items-center justify-between flex-wrap gap-y-8 pt-20">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full lg:w-1/2 container">
                         <div className="rounded-lg flex items-start justify-start gap-4 flex-col max-w-full py-4 px-2 text-center mx-auto">
                             <div className="w-12 h-12 relative rounded-full p-3 bg-[#F8F3FD]">

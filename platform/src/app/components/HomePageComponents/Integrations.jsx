@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 export default function Integrations() {
@@ -9,7 +10,7 @@ export default function Integrations() {
           <h2 className=" text-4xl h2 mb-4 font-semibold">Integrations</h2>
         </div>
 
-        <div className="flex items-center justify-center flex-wrap">
+        <div className="flex items-center justify-center flex-wrap pt-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8 w-full max-w-[1000px] mx-auto">
             <div className="flex items-start justify-start gap-4 flex-col max-w-full p-4 py-5 text-center mx-auto bg-white ">
               <div className="w-full relative">
@@ -18,14 +19,14 @@ export default function Integrations() {
                   width={150}
                   height={150}
                   alt="react"
-                  className="object-cover "
+                  className="object-cover w-auto h-auto"
                 />
               </div>
               <div className="text-left space-y-2">
                 <h4 className="text-2xl text-[#11161F] font-semibold ">
                   React JS
                 </h4>
-                <p className="text-base text-[#6F7072]">
+                <p className="text-base text-[#6F7072] mb-4">
                   Easily integrate Solramp into your ReactJS applications for
                   seamless crypto checkout. Allow non-crypto users to make
                   payments using bank transfers, Transferwise, and Wallet
@@ -34,9 +35,12 @@ export default function Integrations() {
                 </p>
 
                 <div className="mt-5">
-                  <button className="border border-[#3C89FD] text-[#3C89FD] rounded-[80px] py-2 px-10 w-auto mt-4 whitespace-nowrap">
+                  <Link
+                    href="/integrations"
+                    className="border border-[#3C89FD] text-[#3C89FD] rounded-[80px] py-2 px-10 w-1/3 lg:w-1/3 mt-4 whitespace-nowrap block"
+                  >
                     Integrate
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -47,7 +51,7 @@ export default function Integrations() {
                   width={130}
                   height={150}
                   alt="react"
-                  className="object-cover "
+                  className="object-cover w-auto h-auto "
                 />
               </div>
               <div className="text-left space-y-2">
@@ -63,9 +67,12 @@ export default function Integrations() {
                 </p>
 
                 <div className="mt-5">
-                  <button className="bg-[#E7FFEE] text-[#009D2D] rounded-[80px] py-2 px-10 w-auto mt-4 whitespace-nowrap">
-                    Coming soon
-                  </button>
+                  <Link
+                    href="/integrations"
+                    className="border border-[#3C89FD] text-[#3C89FD] rounded-[80px] py-2 px-10 w-1/3 lg:w-1/3 mt-4 whitespace-nowrap block"
+                  >
+                    Integrate
+                  </Link>
                 </div>
               </div>
             </div>
@@ -76,7 +83,7 @@ export default function Integrations() {
                   width={130}
                   height={150}
                   alt="react"
-                  className="object-cover "
+                  className="object-cover w-auto h-auto"
                 />
               </div>
               <div className="text-left space-y-2">
@@ -105,7 +112,7 @@ export default function Integrations() {
                   width={130}
                   height={150}
                   alt="react"
-                  className="object-cover "
+                  className="object-cover w-auto h-auto"
                 />
               </div>
               <div className="text-left space-y-2">
