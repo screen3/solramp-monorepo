@@ -13,6 +13,7 @@
         "@chakra-ui/react": "^2.8.1",
         "@emotion/react": "^11.11.1",
         "@emotion/styled": "^11.11.0",
+        "@solana/web3.js": "^1.87.1",
         "antd": "^5.10.0",
         "antd-country-phone-input": "^4.5.1",
         "apexcharts": "^3.43.2-0",

@@ -3,14 +3,22 @@
 import { Bank, Scan } from "iconsax-react";
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
+import { PublicKey } from "@solana/web3.js";
 
+//8CGcqJuFxhnQ1HyYbbuCXYzgfGAVKv9DTtCUj5AURe2c
 export default function LandingHeroForm() {
     const paymentPopup = useRef();
+    const [invalidAddress, setInvalidAddress] = React.useState(null);
+    const [amount, setAmount] = React.useState(10);
+    const [email, setEmail] = React.useState("");
+    const [currency, setCurrency] = React.useState("AED");
+    const [crypto, setCrypto] = React.useState("USDC");
+    const [address, setAddress] = React.useState("");
 
     useEffect(() => {
         if (typeof window !== "undefined") {
             paymentPopup.current = window.popup.initialize({
-                recipient: "0292399023",
+                business: "0292399023",
             });
         }
     }, []);
@@ -18,9 +26,10 @@ export default function LandingHeroForm() {
     const openPaymentPopup = (event) => {
         event.preventDefault();
         paymentPopup.current.open({
-            amount: "20000",
-            fiat: "AED",
-            customer_email: "test@mailinator.com",
+            amount: amount,
+            fiat: currency,
+            crypto: crypto,
+            customer_email: email,
         });
     };
 
@@ -38,11 +47,16 @@ export default function LandingHeroForm() {
                             </label>
                             <input
                                 id="amount"
-                                type="text"
+                                required
+                                max={100}
+                                type="number"
                                 className="block w-full h-12 px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-gray-400 rounded-md focus:outline-none focus:ring-none"
                                 name="amount"
                                 autoComplete="off"
-                                defaultValue="10"
+                                defaultValue={amount}
+                                onChange={(event) => {
+                                    setAmount(event.target.value);
+                                }}
                                 placeholder="e.g; 1000"
                             />
                         </div>
@@ -54,10 +68,14 @@ export default function LandingHeroForm() {
                             <input
                                 id="email"
                                 type="email"
+                                required
                                 className="block w-full h-12 px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-gray-400 rounded-md focus:outline-none focus:ring-none"
                                 name="email"
                                 autoComplete="off"
                                 placeholder="e.g example@mailinator.com"
+                                onChange={(event) => {
+                                    setEmail(event.target.value);
+                                }}
                             />
                         </div>
                     </div>
@@ -69,16 +87,16 @@ export default function LandingHeroForm() {
                             </label>
                             <select
                                 id="curr"
-                                defaultValue={1}
+                                defaultValue={currency}
                                 className="block w-full h-12 px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-gray-400 rounded-md focus:outline-none focus:ring-none"
                                 name="curr"
-                                onChange={(event) => {}}
+                                onChange={(event) => {
+                                    setCurrency(event.target.value);
+                                }}
                             >
-                                <option defaultValue value={1}>
-                                    🇦🇪 AED
-                                </option>
-                                <option value={2}>🇺🇸 USD</option>
-                                <option value={3}>🇳🇬 NGN</option>
+                                <option value={"AED"}>🇦🇪 AED</option>
+                                <option value={"USD"}>🇺🇸 USD</option>
+                                <option value={"NGN"}>🇳🇬 NGN</option>
                             </select>
                         </div>
                         <div className="w-full md:w-1/2">
@@ -90,12 +108,12 @@ export default function LandingHeroForm() {
                             </label>
                             <select
                                 id="crypto"
-                                defaultValue={1}
+                                defaultValue={crypto}
                                 className="block w-full h-12 px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-gray-400 rounded-md focus:outline-none focus:ring-none"
                                 name="crypto"
                             >
                                 {/* <option value={1}>USDT</option> */}
-                                <option value={"usdc"}>USDC</option>
+                                <option value={"USDC"}>USDC</option>
                             </select>
                         </div>
                     </div>
@@ -110,12 +128,37 @@ export default function LandingHeroForm() {
                             <input
                                 id="address"
                                 type="text"
-                                className="block w-full h-12 px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-gray-400 rounded-md focus:outline-none focus:ring-none"
+                                className={`block w-full h-12 px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-gray-400 rounded-md focus:outline-none focus:ring-none" ${
+                                    invalidAddress ? "border-red-500" : ""
+                                }`}
                                 name="address"
                                 autoComplete="off"
-                                placeholder="HN7cABqLq.....ELLLsHHe4YWrH"
-                                defaultValue="8CGcqJuFxhnQ1HyYbbuCXYzgfGAVKv9DTtCUj5AURe2c"
+                                onChange={(event) => {
+                                    try {
+                                        const recipient = new PublicKey(
+                                            event.target.value
+                                        );
+                                        const valid = PublicKey.isOnCurve(
+                                            recipient.toBytes()
+                                        );
+
+                                        setInvalidAddress(!valid);
+                                    } catch (error) {
+                                        setInvalidAddress(true);
+                                    }
+
+                                    setAddress(event.target.value);
+                                }}
+                                required
+                                placeholder="e.g HN7cABqLq.....ELLLsHHe4YWrH"
+                                // defaultValue="8CGcqJuFxhnQ1HyYbbuCXYzgfGAVKv9DTtCUj5AURe2c"
                             />
+                            {invalidAddress && (
+                                <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                    To avoid loss of funds, please provide a
+                                    valid solana address.
+                                </span>
+                            )}
                         </div>
                     </div>
                 </div>

@@ -75,11 +75,10 @@ export default function YouInMind() {
                             </div>
                             <div className="text-left space-y-2">
                                 <h6 className="text-xl text-[#101828] font-medium ">
-                                    Instant Conversion and Payouts
+                                    Webhook/Callback Support
                                 </h6>
                                 <p className="text-base text-[#667085]">
-                                    Convert USDC and USDT to Fiat instantly at
-                                    current market rates fast and secured.
+                                    Allows you to build a better user expereince fo your customers and  track your transactions.
                                 </p>
                             </div>
                         </div>
