@@ -28,7 +28,7 @@ export default function LandingHeroForm() {
         paymentPopup.current.open({
             amount: amount,
             fiat: currency,
-            crypto: crypto,
+            token: crypto,
             customer_email: email,
         });
     };

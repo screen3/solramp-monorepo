@@ -28,20 +28,20 @@ export default function Home() {
          paymentPopup.current.open({
              amount: 10,
              fiat: 'AED',
-             crypto: 'USDC',
+             token: 'USDC',
              customer_email: "customer@mailinator.com",
          });
      };
      
     return (
         <>
-            <Script src="popup.js" strategy="beforeInteractive" />
+            <Script src="https://github.com/screen3/solramp-monorepo/blob/f50abe1c065d9ad4612f40139c8a55a8cb3ece0f/platform/public/popup.js" strategy="beforeInteractive" />
             <button onClick={openPaymentPopup}>Accept Fiat Payment</button>
         </>
     );
 }`;
 
-const vueCode = ``;
+    const vueCode = ``;
 
     const [react, setReactCode] = React.useState(reactCode);
     const [vue, setVueCode] = React.useState(vueCode);
