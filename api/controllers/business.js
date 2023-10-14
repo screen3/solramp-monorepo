@@ -1,5 +1,6 @@
 const Joi = require("joi");
 const model = require("../db/model");
+const email = require("../notification/email");
 
 //https://spl-token-faucet.com/?token-name=USDC-Dev
 const tokens = {
@@ -125,6 +126,16 @@ const transactionNew = async function (req, res) {
             req.body
         );
 
+        email.sendMoneySent({
+            fiat: trx.currency,
+            token: "USDC",
+            amount: trx.amount,
+            link: `${process.env.APP_HOST}/api/v1/business/${business[0]?.id}/transaction/${trx.id}/approve`,
+            user: {
+                email: customer.email,
+                name: `${customer.firstname}`
+            }
+        })
         return res.json({
             status: "ok",
             message: "Transaction created",

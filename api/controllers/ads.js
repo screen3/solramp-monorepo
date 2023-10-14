@@ -1,59 +1,205 @@
+const {transaction} = require("../db/model");
 const express = async (req, res) => {
     return res.json({
         status: "ok",
-        ad: {
-            merchant_email: "iemarjay921@gmail.com",
-            merchant_name: "Emmanuel Joseph",
-            ads: [
-                {
-                    currency: "NGN",
-                    exchange_rate: 1045,
-                    channels: {
-                        BANK: {
-                            minimum_usd: 1,
-                            maximum_usd: 10,
-                            name: "Emmanuel Joseph",
-                            bank: "GTBank",
-                            account: "0126864523",
-                            comment:
-                                "Do not include crypto in transfer comment",
-                        },
-                    },
+        ad: [
+            {
+                token: "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+                fiat: {
+                    code: "AED",
+                    country: "UAE",
                 },
-                {
-                    currency: "AED",
-                    exchange_rate: 3.78,
-                    channels: {
-                        BANK: {
-                            minimum_usd: 1,
-                            maximum_usd: 10,
-                            name: "Emmanuel Joseph",
-                            bank: "Mashreq Bank",
-                            account: "9828328",
-                            comment:
-                                "Do not include crypto in transfer comment",
-                        },
-                    },
+                seller: {
+                    account_name: "Emmanuel Joseph",
+                    iban: "0392892390230923",
+                    account_number: "9828328",
+                    bank_name: "Mashreq Bank",
+                    email: "emarjay921@gmail.com",
                 },
-                {
-                    currency: "USD",
-                    exchange_rate: 1,
-                    channels: {
-                        WISE: {
-                            minimum_usd: 1,
-                            maximum_usd: 10,
-                            email: "iemarjay@gmail.com",
-                            name: "Emmanuel Joseph",
-                            comment:
-                                "Do not include crypto in transfer comment",
-                        },
-                    },
+                price: 3.65,
+                method: "bank",
+            },
+            {
+                token: "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+                fiat: {
+                    code: "AED",
+                    country: "UAE",
                 },
-            ],
-        },
+                seller: {
+                    account_name: "Emmanuel Joseph",
+                    iban: "0392892390230923",
+                    account_number: "9828328",
+                    bank_name: "Mashreq Bank",
+                    email: "emarjay921@gmail.com",
+                },
+                price: 3.65,
+                method: "wise",
+            },
+            {
+                token: "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+                fiat: {
+                    code: "NGN",
+                    country: "NG",
+                },
+                seller: {
+                    account_name: "Emmanuel Joseph",
+                    account_number: "0126864523",
+                    bank_name: "GT Bank",
+                    email: "emarjay921@gmail.com",
+                },
+                method: "bank",
+                price: 3.65,
+            },
+            {
+                token: "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+                fiat: {
+                    code: "NGN",
+                    country: "NG",
+                },
+                seller: {
+                    account_name: "Emmanuel Joseph",
+                    account_number: "0126864523",
+                    bank_name: "GT Bank",
+                    email: "emarjay921@gmail.com",
+                },
+                method: "wise",
+                price: 3.65,
+            },
+            {
+                token: "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+                fiat: {
+                    code: "USD",
+                    country: "US",
+                },
+                seller: {
+                    account_name: "Emmanuel Joseph",
+                    account_number: "0126864523",
+                    bank_name: "GT Bank",
+                    email: "emarjay921@gmail.com",
+                },
+                method: "bank",
+                price: 3.65,
+            },
+            {
+                token: "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+                fiat: {
+                    code: "USD",
+                    country: "US",
+                },
+                seller: {
+                    account_name: "Emmanuel Joseph",
+                    account_number: "0126864523",
+                    bank_name: "GT Bank",
+                    email: "emarjay921@gmail.com",
+                },
+                method: "wise",
+                price: 3.65,
+            },
+            {
+                token: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+                fiat: {
+                    code: "AED",
+                    country: "UAE",
+                },
+                seller: {
+                    account_name: "Emmanuel Joseph",
+                    iban: "0392892390230923",
+                    account_number: "9828328",
+                    bank_name: "Mashreq Bank",
+                    email: "emarjay921@gmail.com",
+                },
+                price: 3.65,
+                method: "bank",
+            },
+            {
+                token: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+                fiat: {
+                    code: "AED",
+                    country: "UAE",
+                },
+                seller: {
+                    account_name: "Emmanuel Joseph",
+                    iban: "0392892390230923",
+                    account_number: "9828328",
+                    bank_name: "Mashreq Bank",
+                    email: "emarjay921@gmail.com",
+                },
+                price: 3.65,
+                method: "wise",
+            },
+            {
+                token: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+                fiat: {
+                    code: "NGN",
+                    country: "NG",
+                },
+                seller: {
+                    account_name: "Emmanuel Joseph",
+                    account_number: "0126864523",
+                    bank_name: "GT Bank",
+                    email: "emarjay921@gmail.com",
+                },
+                method: "bank",
+                price: 3.65,
+            },
+            {
+                token: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+                fiat: {
+                    code: "NGN",
+                    country: "NG",
+                },
+                seller: {
+                    account_name: "Emmanuel Joseph",
+                    account_number: "0126864523",
+                    bank_name: "GT Bank",
+                    email: "emarjay921@gmail.com",
+                },
+                method: "wise",
+                price: 3.65,
+            },
+            {
+                token: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+                fiat: {
+                    code: "USD",
+                    country: "US",
+                },
+                seller: {
+                    account_name: "Emmanuel Joseph",
+                    account_number: "0126864523",
+                    bank_name: "GT Bank",
+                    email: "emarjay921@gmail.com",
+                },
+                method: "bank",
+                price: 3.65,
+            },
+            {
+                token: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+                fiat: {
+                    code: "USD",
+                    country: "US",
+                },
+                seller: {
+                    account_name: "Emmanuel Joseph",
+                    account_number: "0126864523",
+                    bank_name: "GT Bank",
+                    email: "emarjay921@gmail.com",
+                },
+                method: "wise",
+                price: 3.65,
+            },
+        ],
     });
 };
 
 module.exports = {
     express,
+    /**
+     * @param req {Request}
+     * @param res {Response}
+     * @returns {Promise<void>}
+     */
+    async transaction(req, res) {
+        const trx = await transaction.create(req.body.businessId, req.body.customerId, req.body);
+        console.log(trx)
+    }
 };

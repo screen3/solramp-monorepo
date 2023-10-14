@@ -14,7 +14,7 @@ type Message = { action: "popup:options" | "popup:data", data: ShowPopupOptions,
 function App() {
   const [show, setShow] = useState(false);
   const [openOptions, setOpenOptions] = useState<ShowPopupOptions>({fiat: "AED"})
-  const [options, setOptions] = useState<SolOptions>({recipient: "32032092309"})
+  const [options, setOptions] = useState<SolOptions>({business: "32032092309"})
 
   useEffect(() => {
     window.postMessage({"data": {amount: "20000", customer_email: "bose@mailinator.com", fiat: "AED"}, action: "popup:data"})

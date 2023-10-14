@@ -2,7 +2,7 @@ import {IconNames} from "./components/icons";
 
 export interface SolOptions {
   amount?: number;
-  recipient: string;
+  business: string;
   splToken?: string;
   reference?: string;
   label?: string;
@@ -16,6 +16,7 @@ export type SupportedMethods = "wise" | "bank" | "qr"
 export interface ShowPopupOptions {
   fiat: SupportedFiatCode;
   customer_email?: string;
+  token?: string;
   amount?: number;
 }
 
