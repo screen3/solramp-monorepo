@@ -62,9 +62,9 @@ const Sidebar = () => {
                             >
                                 <Image
                                     src="/logo/mainLogo.svg"
-                                    height={40}
+                                    height={30}
                                     width={30}
-                                    className="transition 300ms ease object-contain w-auto h-auto"
+                                    className="transition 300ms ease object-contain w-auto h-auto mr-2"
                                     priority
                                     alt="logo"
                                 />

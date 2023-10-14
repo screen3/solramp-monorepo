@@ -15,6 +15,7 @@ const update = async function (req, res) {
         business_name: Joi.string().min(3).required(),
         default_currency: Joi.string().valid("AED", "NGN", "USD").required(),
         preferred_channels: Joi.string().required(),
+        token: Joi.string().required().length(44),
         recipient_address: Joi.string().required().length(44),
         logo: Joi.string().uri(),
         callback_url: Joi.string().uri(),
@@ -78,7 +79,6 @@ const transactionNew = async function (req, res) {
         customer_name: Joi.string(),
         amount: Joi.required(),
         fee: Joi.required(),
-        default_currency: Joi.string().valid("AED", "NGN", "USD").required(),
         status: Joi.string()
             .valid("COMPLETED", "CANCELED", "REJECTED", "PENDING")
             .required(),

@@ -89,6 +89,7 @@ const run = async (req, res) => {
               fee float(15,6) DEFAULT NULL,
               amount float(15,6) DEFAULT NULL,
               recipient varchar(44) DEFAULT NULL,
+              token varchar(44) DEFAULT NULL,
               start_time timestamp NULL DEFAULT NULL,
               end_time timestamp NULL DEFAULT NULL,
               customer_id int(11) DEFAULT NULL,

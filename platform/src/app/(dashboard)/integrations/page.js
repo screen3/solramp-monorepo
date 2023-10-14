@@ -28,7 +28,7 @@ export default function Home() {
          paymentPopup.current.open({
              amount: 10,
              fiat: 'AED',
-             crypto: 'USDC',
+             token: 'USDC',
              customer_email: "customer@mailinator.com",
          });
      };
