@@ -19,10 +19,11 @@ const list = async (businessId) => {
 const create = async (businessId, customerId, data) => {
     return new Promise((resolve, reject) => {
         conn.query(
-            "INSERT INTO transactions SET business_id = ?, reference = ?, status = ?, currency = ?, channel = ?, fee = ?, amount = ?, start_time = ?, end_time = ?, customer_id = ?, created_at = ?",
+            "INSERT INTO transactions SET business_id = ?, reference = ?, recipient = ?, status = ?, currency = ?, channel = ?, fee = ?, amount = ?, start_time = ?, end_time = ?, customer_id = ?, created_at = ?",
             [
                 businessId,
                 new Date().getTime(),
+                data.recipient,
                 data.status,
                 data.currency,
                 data.channel,

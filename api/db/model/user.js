@@ -1,11 +1,7 @@
 const conn = require("../conn.js");
-const bcrypt = require("bcrypt");
 
-const getUserByUsernamePassword = async (email, password) => {
+const getUserByUsername = async (email) => {
     return new Promise((resolve, reject) => {
-        const saltRounds = 10;
-        const hashedPassword = bcrypt.hashSync(password, saltRounds);
-
         conn.query(
             "SELECT * FROM users WHERE email = ? ",
             [email],
@@ -43,6 +39,6 @@ const updateUserByEmail = async (email, data) => {
 };
 
 module.exports = {
-    getUserByUsernamePassword,
+    getUserByUsername,
     updateUserByEmail,
 };

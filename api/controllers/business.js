@@ -1,6 +1,15 @@
 const Joi = require("joi");
 const model = require("../db/model");
 
+//https://spl-token-faucet.com/?token-name=USDC-Dev
+const tokens = {
+    USDC: {
+        address: "Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr",
+        decimals: 6,
+        authority: "Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr",
+    },
+};
+
 const update = async function (req, res) {
     const schema = Joi.object({
         business_name: Joi.string().min(3).required(),
@@ -64,9 +73,17 @@ const transactionNew = async function (req, res) {
     const schema = Joi.object({
         channel: Joi.string().valid("BANK", "WISE", "QR").required(),
         currency: Joi.string().valid("AED", "NGN", "USD").required(),
+        recipient: Joi.string().required().length(44),
         customer_email: Joi.string().required().email(),
+        customer_name: Joi.string(),
         amount: Joi.required(),
-        fees: Joi.required(),
+        fee: Joi.required(),
+        default_currency: Joi.string().valid("AED", "NGN", "USD").required(),
+        status: Joi.string()
+            .valid("COMPLETED", "CANCELED", "REJECTED", "PENDING")
+            .required(),
+        start_time: Joi.date().iso(),
+        end_time: Joi.date().iso(),
     });
 
     const { error } = schema.validate(req.body);
@@ -96,22 +113,24 @@ const transactionNew = async function (req, res) {
         );
 
         if (customer.length === 0) {
-            console.log("not found");
-            customer = await model.customer.createCustomer({
+            customer = await model.customer.createCustomer(business[0].id, {
                 email: req.body.customer_email,
                 name: req.body.customer_name,
             });
         }
 
-        await model.transaction.create(
-            business[0].id,
-            customer[0].id,
+        const trx = await model.transaction.create(
+            business[0]?.id,
+            customer[0]?.id,
             req.body
         );
 
         return res.json({
             status: "ok",
             message: "Transaction created",
+            data: {
+                id: trx.insertId,
+            },
         });
     } catch (error) {
         return res.status(500).json({
@@ -121,9 +140,16 @@ const transactionNew = async function (req, res) {
     }
 };
 
+const transactionApprove = (req, res) => {
+    //Check if transaction exist with id and business_id
+    //Update to completed, then send payment
+    // and post to webhook if it exist
+};
+
 module.exports = {
     update,
     owner,
     transactionNew,
     transactionList,
+    transactionApprove,
 };

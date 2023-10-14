@@ -29,7 +29,7 @@ const update = async function (req, res) {
 };
 
 const login = async function (req, res) {
-    const found = await model.user.getUserByUsernamePassword(
+    const found = await model.user.getUserByUsername(
         req.body.email,
         req.body.password
     );
