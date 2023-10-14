@@ -10,7 +10,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 
 const Integrations = () => {
-  const Text = `// SPDX-License-Identifier: MIT 
+  const Text = `// SPDX-License-Identifier: MIT  
 
     pragma solidity ^0.8.16;
     
