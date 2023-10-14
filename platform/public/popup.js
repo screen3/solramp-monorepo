@@ -108,7 +108,7 @@ window.popup = class Popup {
                     options: this.options,
                     action: "popup:options",
                 },
-                "http://localhost:3000"
+                "https://www.solramp.com/"
             );
 
         document.body.appendChild(this.iframe);
