@@ -75,7 +75,7 @@ window.popup = class Popup {
                 data: this.data,
                 action: "popup:data",
             },
-            "https://www.solramp.com/checkout"
+            "http://159.65.213.14:7010"
         );
 
         // Set the width and height of the iframe
@@ -92,7 +92,7 @@ window.popup = class Popup {
         this.iframe = document.createElement("iframe");
 
         // Set the source (src) of the iframe
-        this.iframe.src = "https://www.solramp.com/checkout";
+        this.iframe.src = "http://159.65.213.14:7010";
 
         // Set the width and height of the iframe
         this.iframe.setAttribute(
@@ -108,7 +108,7 @@ window.popup = class Popup {
                     options: this.options,
                     action: "popup:options",
                 },
-                "https://www.solramp.com/"
+                "http://159.65.213.14:7010"
             );
 
         document.body.appendChild(this.iframe);
