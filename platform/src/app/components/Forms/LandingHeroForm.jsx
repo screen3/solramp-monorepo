@@ -2,12 +2,31 @@
 
 import { Bank, Scan } from "iconsax-react";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 export default function LandingHeroForm() {
+    const paymentPopup = useRef();
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            paymentPopup.current = window.popup.initialize({
+                recipient: "0292399023",
+            });
+        }
+    }, []);
+
+    const openPaymentPopup = (event) => {
+        event.preventDefault();
+        paymentPopup.current.open({
+            amount: "20000",
+            fiat: "AED",
+            customer_email: "test@mailinator.com",
+        });
+    };
+
     return (
         <>
-            <form className="z-20">
+            <form className="z-20" onSubmit={openPaymentPopup}>
                 <div className="flex flex-col gap-4">
                     <div className="flex items-center justify-between gap-2">
                         <div className="w-full md:w-1/4">
@@ -23,7 +42,7 @@ export default function LandingHeroForm() {
                                 className="block w-full h-12 px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-gray-400 rounded-md focus:outline-none focus:ring-none"
                                 name="amount"
                                 autoComplete="off"
-                                value="10"
+                                defaultValue="10"
                                 placeholder="e.g; 1000"
                             />
                         </div>
@@ -145,7 +164,10 @@ export default function LandingHeroForm() {
                         </div>
                     </div>
                     <div>
-                        <button className="px-10 py-3 text-white bg-[#A15DDF] rounded-[80px] ">
+                        <button
+                            type="submit"
+                            className="px-10 py-3 text-white bg-[#A15DDF] rounded-[80px] "
+                        >
                             Pay now
                         </button>
                     </div>

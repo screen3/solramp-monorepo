@@ -1,6 +1,7 @@
 import { SatoshiFont } from "./fonts";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -65,34 +66,12 @@ export const metadata = {
     },
 };
 
-//     openGraph: {
-//         title: "SolRamp: Accept crypto payment for non-crypto users on Solana",
-//         description:
-//             "Accept crypto payments from non-crypto users. Use our Solramp SDK on your website, available for Vuejs and Reactjs, on your WordPress site, and on your Shopify store.",
-//         url: "https://solramp.com",
-//         siteName: "SolRamp",
-//         images: [
-//             {
-//                 url: "https://screen3.io/images/MacbookPro16.png",
-//                 width: 800,
-//                 height: 600,
-//             },
-//             {
-//                 url: "https://screen3.io/images/MacbookPro16.png",
-//                 width: 1800,
-//                 height: 1600,
-//                 alt: "Merchant Dashboard",
-//             },
-//         ],
-//         locale: "en-US",
-//         type: "website",
-//     },
-// };
-
 export default function RootLayout({ children }) {
     return (
         <>
             <html lang="en">
+                <Script src="popup.js" strategy="beforeInteractive" />
+
                 <body
                     className={`${SatoshiFont.variable} ${SatoshiFont.className} `}
                     suppressHydrationWarning={true}
