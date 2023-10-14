@@ -56,6 +56,11 @@ app.get("/api/v1/business/:ref/transaction/all", business.transactionList);
 
 app.get("/api/v1/ads/express", ads.express);
 
+app.get(
+    "/api/v1/business/:ref/transaction/:transactionId/approve",
+    business.transactionApprove
+);
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
