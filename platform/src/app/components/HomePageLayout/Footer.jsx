@@ -24,13 +24,6 @@ export default function Footer() {
                                 <InstagramIcon className={"w-6 h-6"}/>
                                 <LinkedInIcon className={"w-6 h-6"}/>
                                 <YoutubeIcon className={"w-6 h-6"}/>
-                                {/* {icons.map((icon, index) => (
-                                    <TwoIcon
-                                        key={index}
-                                        icon={`${icon}`}
-                                        className={"w-6 h-6"}
-                                    />
-                                ))} */}
                             </div>
                         </div>
                         <div>
