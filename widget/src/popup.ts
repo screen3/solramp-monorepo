@@ -1,5 +1,7 @@
-window.popup = class Popup {
-	static instance;
+export {}
+(window as Window).popup = class Popup {
+	static instance: Popup;
+	iframe: HTMLIFrameElement | undefined;
 
 	/**
 	 * @param options {{
@@ -17,13 +19,16 @@ window.popup = class Popup {
 	/**
 	 * @type {{amount: string, customer_email: string, fiat:  "AED" | "USD" | "NGN",}}
 	 */
-	data = {
+	data: {
+		fiat: "AED" | "USD" | "NGN";
+		customer_email?: string;
+		amount?: string;
+	} = {
 		fiat: "AED",
 		customer_email: "",
 		amount: "",
 	}
 
-	iframe;
 
 	/**
 	 * @param options {{
@@ -35,7 +40,14 @@ window.popup = class Popup {
 	 *   memo?: string;
 	 *   }}
 	 */
-	constructor(options) {
+	constructor(options: {
+		recipient: string;
+		splToken?: string;
+		reference?: string;
+		label?: string;
+		message?: string;
+		memo?: string;
+	}) {
 		this.options = options
 	}
 
@@ -49,7 +61,14 @@ window.popup = class Popup {
 	 *   memo?: string;
 	 * }}
 	 */
-	static initialize(options) {
+	static initialize(options: {
+		recipient: string;
+		splToken?: string;
+		reference?: string;
+		label?: string;
+		message?: string;
+		memo?: string;
+	}) {
 		if (!Popup.instance) {
 			Popup.instance = new Popup(options)
 			Popup.instance.loadIframe();
@@ -67,7 +86,14 @@ window.popup = class Popup {
 	 *   failed: (err) => void
 	 * }}
 	 */
-	open(data) {
+	open(data: {
+		fiat: "AED" | "USD" | "NGN";
+		customer_email?: string;
+		amount?: string;
+		onSuccess: (trx: any) => void
+		failed: (err: Error) => void
+	}) {
+		if (!this.iframe) throw new Error("call initialize first")
 		this.data = data
 
 		this.iframe.contentWindow?.postMessage({
@@ -92,7 +118,7 @@ window.popup = class Popup {
 		this.iframe.width = "0";
 		this.iframe.height = "0";
 
-		this.iframe.onload = () => this.iframe.contentWindow?.postMessage({
+		this.iframe.onload = () => this.iframe?.contentWindow?.postMessage({
 			options: this.options,
 			action: "popup:options"
 		}, "http://localhost:3000");

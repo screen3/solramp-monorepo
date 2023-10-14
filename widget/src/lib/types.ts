@@ -1,3 +1,5 @@
+import {IconNames} from "./components/icons";
+
 export interface SolOptions {
   amount?: number;
   recipient: string;
@@ -21,4 +23,13 @@ export interface PopupProps extends SolOptions, ShowPopupOptions {
   show: boolean;
 }
 
-export type Keys = 'bank' | 'qr' | 'wise'
+export type MethodId = 'bank' | 'qr' | 'wise'
+
+export type Method = {
+  id: MethodId;
+  name: string;
+  icon: IconNames;
+  iconActive: IconNames;
+  active?: boolean
+  handleClick?: () => void
+};
