@@ -1,3 +1,5 @@
+"use client";
+
 import { Bank, Scan } from "iconsax-react";
 import Image from "next/image";
 import React from "react";
@@ -51,8 +53,9 @@ export default function LandingHeroForm() {
                                 defaultValue={1}
                                 className="block w-full h-12 px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-gray-400 rounded-md focus:outline-none focus:ring-none"
                                 name="curr"
+                                onChange={(event) => {}}
                             >
-                                <option selected value={1}>
+                                <option defaultValue value={1}>
                                     🇦🇪 AED
                                 </option>
                                 <option value={2}>🇺🇸 USD</option>
@@ -92,6 +95,7 @@ export default function LandingHeroForm() {
                                 name="address"
                                 autoComplete="off"
                                 placeholder="HN7cABqLq.....ELLLsHHe4YWrH"
+                                defaultValue="8CGcqJuFxhnQ1HyYbbuCXYzgfGAVKv9DTtCUj5AURe2c"
                             />
                         </div>
                     </div>
