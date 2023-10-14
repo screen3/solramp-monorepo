@@ -81,9 +81,10 @@ const run = async (req, res) => {
                     CREATE TABLE IF NOT EXISTS transactions (
               id int(11) unsigned NOT NULL AUTO_INCREMENT,
               business_id int(11) DEFAULT NULL,
-              reference varchar(10) DEFAULT NULL,
-              channel enum('WISE','BANK','QR') DEFAULT NULL,
+              reference varchar(25) DEFAULT NULL,
               status enum('COMPLETED','DISPUTED','CANCELED','REJECTED') DEFAULT NULL,
+              currency enum('AED','USD','NGN') DEFAULT NULL,
+              channel enum('WISE','BANK','QR') DEFAULT NULL,
               fee float(15,6) DEFAULT NULL,
               amount float(15,6) DEFAULT NULL,
               start_time timestamp NULL DEFAULT NULL,

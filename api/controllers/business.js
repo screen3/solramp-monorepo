@@ -41,7 +41,89 @@ const owner = async function (req, res) {
     });
 };
 
+const transactionList = async function (req, res) {
+    const ref = req.params.ref;
+    const business = await model.business.getBusinessByRef(ref);
+
+    if (business.length === 0) {
+        return res.status(404).json({
+            status: "error",
+            message: "Business not found",
+        });
+    }
+
+    const transactions = await model.transaction.list(business[0].id);
+
+    return res.json({
+        status: "ok",
+        transactions,
+    });
+};
+
+const transactionNew = async function (req, res) {
+    const schema = Joi.object({
+        channel: Joi.string().valid("BANK", "WISE", "QR").required(),
+        currency: Joi.string().valid("AED", "NGN", "USD").required(),
+        customer_email: Joi.string().required().email(),
+        amount: Joi.required(),
+        fees: Joi.required(),
+    });
+
+    const { error } = schema.validate(req.body);
+
+    if (error) {
+        return res.status(400).json({
+            status: "error",
+            message: error.details[0].message,
+        });
+    }
+
+    const ref = req.params.ref;
+    try {
+        const business = await model.business.getBusinessByRef(ref);
+
+        if (business.length === 0) {
+            return res.status(404).json({
+                status: "error",
+                message: "Business not found",
+            });
+        }
+
+        let customer;
+
+        customer = await model.customer.getCustomerByEmail(
+            req.body.customer_email
+        );
+
+        if (customer.length === 0) {
+            console.log("not found");
+            customer = await model.customer.createCustomer({
+                email: req.body.customer_email,
+                name: req.body.customer_name,
+            });
+        }
+
+        await model.transaction.create(
+            business[0].id,
+            customer[0].id,
+            req.body
+        );
+
+        return res.json({
+            status: "ok",
+            message: "Transaction created",
+        });
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            message: error.message,
+        });
+    }
+};
+
 module.exports = {
     update,
     owner,
+    transactionNew,
+    transactionList,
 };

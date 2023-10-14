@@ -1,5 +1,7 @@
 const Joi = require("joi");
 const model = require("../db/model");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const update = async function (req, res) {
     const schema = Joi.object({
