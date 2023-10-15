@@ -26,11 +26,17 @@ const verifyToken = (req, res, next) => {
 };
 
 const corsOptions = {
-    origin: process.env.FRONT_URL,
+    origin: process.env.FRONTEND_URL,
     optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
+
+app.all("*", function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL);
+    res.header("Access-Control-Allow-Headers", process.env.FRONTEND_URL);
+    next();
+});
 
 // parse requests of content-type - application/json
 app.use(express.json());

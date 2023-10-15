@@ -123,7 +123,7 @@ export default function LandingHeroForm() {
                                 name="crypto"
                             >
                                 {/* <option value={1}>USDT</option> */}
-                                <option value={"USDC"}>USDC (Testnet)</option>
+                                <option value={"USDC"}>USDC (testnet)</option>
                             </select>
                         </div>
                     </div>

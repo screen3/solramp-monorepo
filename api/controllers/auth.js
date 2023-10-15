@@ -2,6 +2,7 @@ const Joi = require("joi");
 const model = require("../db/model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const e = require("express");
 
 const update = async function (req, res) {
     const schema = Joi.object({
@@ -56,8 +57,13 @@ const login = async function (req, res) {
                         message: err.message,
                     });
                 } else {
+                    res.cookie("Authorization", "Bearer " + token, {
+                        expires: new Date(Date.now() + 48 * 3600000),
+                        httpOnly: true,
+                    });
+
                     return res.json({
-                        token: token,
+                        message: "Authenticated",
                         user: user,
                     });
                 }
@@ -100,6 +106,17 @@ const register = async function (req, res) {
         return res.status(400).json({
             status: "error",
             message: "Business already exists",
+        });
+    }
+
+    const exist = await model.user.getUserByUsername(
+        req.body.representative_email
+    );
+
+    if (exist.length > 0) {
+        return res.status(400).json({
+            status: "error",
+            message: "Email already exists",
         });
     }
 

@@ -35,7 +35,7 @@ export default function Home() {
      
     return (
         <>
-            <Script src="https://github.com/screen3/solramp-monorepo/blob/f50abe1c065d9ad4612f40139c8a55a8cb3ece0f/platform/public/popup.js" strategy="beforeInteractive" />
+            <Script src="https://solramp.com/popup.js" strategy="beforeInteractive" />
             <button onClick={openPaymentPopup}>Accept Fiat Payment</button>
         </>
     );
