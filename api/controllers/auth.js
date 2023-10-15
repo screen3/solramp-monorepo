@@ -60,6 +60,7 @@ const login = async function (req, res) {
                     res.cookie("Authorization", "Bearer " + token, {
                         expires: new Date(Date.now() + 48 * 3600000),
                         httpOnly: true,
+                        domain: process.env.FRONTEND_URL,
                     });
 
                     return res.json({

@@ -27,7 +27,6 @@ const SignUpForm = () => {
         setLoading(true);
         e.preventDefault();
 
-        console.log(country);
         const data = {
             business_name: business.current.value,
             representative_firstname: firstname.current.value,
@@ -42,7 +41,7 @@ const SignUpForm = () => {
         axios
             .post(`${apiURL}/business/new`, data)
             .then((res) => {
-                push("/auth/login");
+                push("/auth/login?email=" + email.current.value + "&new=true");
             })
             .catch((err) => {
                 console.log("err", err);
@@ -179,7 +178,7 @@ const SignUpForm = () => {
 
                     <div className="flex w-full mb-2">
                         {loading ? (
-                            <a className="h-[50px] py-2 px-4 w-full  bg-[#A15DDF] hover:bg-[#A15DDF]/90 focus:ring-purple-500 focus:ring-offset-none text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-none rounded-[80px] flex items-center justify-center ">
+                            <a className="disabled cursor-not-allowed h-[50px] py-2 px-4 w-full  bg-[#A15DDF] hover:bg-[#A15DDF]/90 focus:ring-purple-500 focus:ring-offset-none text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-none rounded-[80px] flex items-center justify-center ">
                                 <Timer className="animate-spin mr-1" />{" "}
                                 Processing
                             </a>
