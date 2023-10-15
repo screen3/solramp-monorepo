@@ -30,50 +30,67 @@ const update = async function (req, res) {
 };
 
 const login = async function (req, res) {
-    const found = await model.user.getUserByUsername(req.body.email);
+    try {
+        const found = await model.user.getUserByUsername(req.body.email);
 
-    if (found.length > 0) {
-        const user = found[0];
+        if (found.length > 0) {
+            const user = found[0];
 
-        const match = bcrypt.compareSync(req.body.password, user.password);
+            const match = bcrypt.compareSync(req.body.password, user.password);
 
-        if (!match) {
+            if (!match) {
+                return res.status(400).json({
+                    status: "error",
+                    message: "Invalid username or password",
+                });
+            }
+
+            delete user.password;
+
+            jwt.sign(
+                { user },
+                process.env.JWT_SECRET,
+                { expiresIn: "24h" },
+                (err, token) => {
+                    if (err) {
+                        return res.status(400).json({
+                            status: "error",
+                            message: err.message,
+                        });
+                    } else {
+                        res.cookie("Authorization", token, {
+                            httpOnly: true,
+                            maxAge: 24 * 60 * 60 * 1000, // 24 hours
+                        });
+
+                        res.send({
+                            message: "success",
+                        });
+                    }
+                }
+            );
+        } else {
             return res.status(400).json({
                 status: "error",
                 message: "Invalid username or password",
             });
         }
-
-        delete user.password;
-
-        jwt.sign(
-            { user },
-            process.env.JWT_SECRET,
-            { expiresIn: "24h" },
-            (err, token) => {
-                if (err) {
-                    return res.status(400).json({
-                        status: "error",
-                        message: err.message,
-                    });
-                } else {
-                    res.cookie("Authorization", token, {
-                        httpOnly: true,
-                        maxAge: 24 * 60 * 60 * 1000, // 24 hours
-                    });
-
-                    res.send({
-                        message: "success",
-                    });
-                }
-            }
-        );
-    } else {
+    } catch (error) {
         return res.status(400).json({
             status: "error",
-            message: "Invalid username or password",
+            message: error.message,
         });
     }
+};
+
+const logout = async function (req, res) {
+    res.cookie("Authorization", "", {
+        maxAge: 0,
+    });
+
+    res.send({
+        message: "success",
+    });
 };
 
 const register = async function (req, res) {
@@ -139,4 +156,5 @@ module.exports = {
     login,
     register,
     update,
+    logout,
 };

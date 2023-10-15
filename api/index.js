@@ -7,23 +7,22 @@ const app = express();
 const port = process.env.PORT || 3000;
 const jwt = require("jsonwebtoken");
 const verifyToken = (req, res, next) => {
-    const bearerHeader = req.headers["authorization"];
-    if (typeof bearerHeader !== "undefined") {
-        const bearerToken = bearerHeader.split(" ")[1];
-        req.token = bearerToken;
-
-        jwt.verify(bearerToken, process.env.JWT_SECRET, (err, authData) => {
+    jwt.verify(
+        req.cookies["Authorization"],
+        process.env.JWT_SECRET,
+        (err, authData) => {
             if (err) {
                 res.sendStatus(403);
             } else {
                 req.auth = authData;
                 next();
             }
-        });
-    } else {
-        res.sendStatus(403);
-    }
+        }
+    );
 };
+const cookieParser = require("cookie-parser");
+
+app.use(cookieParser());
 
 const corsOptions = {
     credentials: true,
@@ -54,12 +53,7 @@ app.post("/api/v1/health", (req, res) => {
 app.post("/api/v1/migration", migration.run);
 app.post("/api/v1/business/new", auth.register);
 app.post("/api/v1/account/login", auth.login);
-app.get("/api/v1/account/logout", verifyToken, (req, res) => {
-    return res
-        .clearCookie("Authorization")
-        .status(200)
-        .json({ message: "Logged out" });
-});
+app.post("/api/v1/account/logout", verifyToken, auth.logout);
 
 app.post("/api/v1/account/update", verifyToken, auth.update);
 app.post("/api/v1/business/update", verifyToken, business.update);
