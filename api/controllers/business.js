@@ -1,5 +1,8 @@
 const Joi = require("joi");
 const model = require("../db/model");
+const web3 = require("@solana/web3.js");
+const splToken = require("@solana/spl-token");
+const bs58 = require("bs58");
 
 //https://spl-token-faucet.com/?token-name=USDC-Dev
 const tokens = {
@@ -15,7 +18,6 @@ const update = async function (req, res) {
         business_name: Joi.string().min(3).required(),
         default_currency: Joi.string().valid("AED", "NGN", "USD").required(),
         preferred_channels: Joi.string().required(),
-        token: Joi.string().required().length(44),
         recipient_address: Joi.string().required().length(44),
         logo: Joi.string().uri(),
         callback_url: Joi.string().uri(),
@@ -74,6 +76,7 @@ const transactionNew = async function (req, res) {
     const schema = Joi.object({
         channel: Joi.string().valid("BANK", "WISE", "QR").required(),
         currency: Joi.string().valid("AED", "NGN", "USD").required(),
+        token: Joi.string().required().length(44),
         recipient: Joi.string().required().length(44),
         customer_email: Joi.string().required().email(),
         customer_name: Joi.string(),
@@ -140,10 +143,119 @@ const transactionNew = async function (req, res) {
     }
 };
 
-const transactionApprove = (req, res) => {
+const transactionApprove = async (req, res) => {
     //Check if transaction exist with id and business_id
     //Update to completed, then send payment
     // and post to webhook if it exist
+
+    const businessId = req.params.ref;
+    const transactionId = req.params.transactionId;
+
+    const business = await model.business.getBusinessByRef(businessId);
+
+    if (business.length === 0) {
+        return res.status(404).json({
+            status: "error",
+            message: "Business not found",
+        });
+    }
+
+    const transaction = await model.transaction.getTransactionById(
+        transactionId
+    );
+
+    if (transaction.length === 0) {
+        return res.status(404).json({
+            status: "error",
+            message: "Transaction not found",
+        });
+    }
+
+    sendToken(
+        transaction[0].token,
+        6,
+        transaction[0].recipient,
+        transaction[0].amount
+    )
+        .then(async (signature) => {
+            return res.json({
+                status: "ok",
+                message: "Transaction approved",
+                signature,
+            });
+        })
+        .catch((error) => {
+            return res.status(500).json({
+                status: "error",
+                message: error.message,
+            });
+        });
+};
+
+const sendToken = async (
+    tokenAddress,
+    tokenDecimals,
+    recipientAddress,
+    payment
+) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const senderPrivateKey = process.env.MASTER_KEY; // Sender's private key
+            const amount = payment * 10 ** tokenDecimals; // Number of tokens to transfer
+
+            // Initialize a connection to the Solana network
+            const connection = new web3.Connection(
+                web3.clusterApiUrl("testnet"),
+                "confirmed"
+            ); // Use the appropriate network
+
+            const fromWallet = web3.Keypair.fromSecretKey(
+                Uint8Array.from(bs58.decode(senderPrivateKey))
+            );
+            const toWallet = new web3.PublicKey(recipientAddress);
+
+            (async () => {
+                var USDC_pubkey = new web3.PublicKey(tokenAddress);
+                var USDC_Token = new splToken.Token(
+                    connection,
+                    USDC_pubkey,
+                    splToken.TOKEN_PROGRAM_ID,
+                    fromWallet
+                );
+
+                // Create associated token accounts for my token if they don't exist yet
+                var fromTokenAccount =
+                    await USDC_Token.getOrCreateAssociatedAccountInfo(
+                        fromWallet.publicKey
+                    );
+                var toTokenAccount =
+                    await USDC_Token.getOrCreateAssociatedAccountInfo(toWallet);
+
+                // Add token transfer instructions to transaction
+                var transaction = new web3.Transaction().add(
+                    splToken.Token.createTransferInstruction(
+                        splToken.TOKEN_PROGRAM_ID,
+                        fromTokenAccount.address,
+                        toTokenAccount.address,
+                        fromWallet.publicKey,
+                        [],
+                        amount
+                    )
+                );
+
+                // Sign transaction, broadcast, and confirm
+                var signature = await web3.sendAndConfirmTransaction(
+                    connection,
+                    transaction,
+                    [fromWallet]
+                );
+
+                resolve(signature);
+            })();
+        } catch (error) {
+            reject(error);
+        }
+    });
 };
 
 module.exports = {

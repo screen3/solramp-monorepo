@@ -25,12 +25,22 @@ export default function LandingHeroForm() {
 
     const openPaymentPopup = (event) => {
         event.preventDefault();
-        paymentPopup.current.open({
-            amount: amount,
-            fiat: currency,
-            token: crypto,
-            customer_email: email,
-        });
+
+        try {
+            const recipient = new PublicKey(address);
+            const valid = PublicKey.isOnCurve(recipient.toBytes());
+
+            if (valid) {
+                paymentPopup.current.open({
+                    amount: amount,
+                    fiat: currency,
+                    token: crypto,
+                    customer_email: email,
+                });
+            }
+        } catch (error) {
+            setInvalidAddress(true);
+        }
     };
 
     return (
@@ -113,7 +123,7 @@ export default function LandingHeroForm() {
                                 name="crypto"
                             >
                                 {/* <option value={1}>USDT</option> */}
-                                <option value={"USDC"}>USDC</option>
+                                <option value={"USDC"}>USDC (Testnet)</option>
                             </select>
                         </div>
                     </div>

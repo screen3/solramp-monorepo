@@ -19,10 +19,11 @@ const list = async (businessId) => {
 const create = async (businessId, customerId, data) => {
     return new Promise((resolve, reject) => {
         conn.query(
-            "INSERT INTO transactions SET business_id = ?, reference = ?, recipient = ?, status = ?, currency = ?, channel = ?, fee = ?, amount = ?, start_time = ?, end_time = ?, customer_id = ?, created_at = ?",
+            "INSERT INTO transactions SET business_id = ?,  reference = ?, token = ?,recipient = ?, status = ?, currency = ?, channel = ?, fee = ?, amount = ?, start_time = ?, end_time = ?, customer_id = ?, created_at = ?",
             [
                 businessId,
                 new Date().getTime(),
+                data.token,
                 data.recipient,
                 data.status,
                 data.currency,
@@ -45,7 +46,24 @@ const create = async (businessId, customerId, data) => {
     });
 };
 
+const getTransactionById = async (transactionId) => {
+    return new Promise((resolve, reject) => {
+        conn.query(
+            "SELECT * FROM transactions WHERE id = ?",
+            [transactionId],
+            function (error, results, fields) {
+                if (error) {
+                    reject(error);
+                }
+
+                resolve(results);
+            }
+        );
+    });
+};
+
 module.exports = {
     list,
     create,
+    getTransactionById,
 };
