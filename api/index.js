@@ -26,8 +26,9 @@ const verifyToken = (req, res, next) => {
 };
 
 const corsOptions = {
+    credentials: true,
     origin: process.env.FRONTEND_URL,
-    optionsSuccessStatus: 200,
+    // optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
@@ -53,6 +54,12 @@ app.post("/api/v1/health", (req, res) => {
 app.post("/api/v1/migration", migration.run);
 app.post("/api/v1/business/new", auth.register);
 app.post("/api/v1/account/login", auth.login);
+app.get("/api/v1/account/logout", verifyToken, (req, res) => {
+    return res
+        .clearCookie("Authorization")
+        .status(200)
+        .json({ message: "Logged out" });
+});
 
 app.post("/api/v1/account/update", verifyToken, auth.update);
 app.post("/api/v1/business/update", verifyToken, business.update);

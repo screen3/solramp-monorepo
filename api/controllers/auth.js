@@ -57,15 +57,13 @@ const login = async function (req, res) {
                         message: err.message,
                     });
                 } else {
-                    res.cookie("Authorization", "Bearer " + token, {
-                        expires: new Date(Date.now() + 48 * 3600000),
+                    res.cookie("Authorization", token, {
                         httpOnly: true,
-                        domain: process.env.FRONTEND_URL,
+                        maxAge: 24 * 60 * 60 * 1000, // 24 hours
                     });
 
-                    return res.json({
-                        message: "Authenticated",
-                        user: user,
+                    res.send({
+                        message: "success",
                     });
                 }
             }
