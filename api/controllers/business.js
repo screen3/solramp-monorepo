@@ -4,6 +4,7 @@ const web3 = require("@solana/web3.js");
 const splToken = require("@solana/spl-token");
 const bs58 = require("bs58");
 const email = require("../notification/email");
+const { updateSignature } = require("../db/model/transaction");
 
 //https://spl-token-faucet.com/?token-name=USDC-Dev
 const tokens = {
@@ -136,9 +137,10 @@ const transactionNew = async function (req, res) {
             link: `${process.env.APP_HOST}/api/v1/business/${business[0]?.id}/transaction/${trx.id}/approve`,
             user: {
                 email: customer.email,
-                name: `${customer.firstname}`
-            }
-        })
+                name: `${customer.firstname}`,
+            },
+        });
+
         return res.json({
             status: "ok",
             message: "Transaction created",
@@ -182,6 +184,14 @@ const transactionApprove = async (req, res) => {
         });
     }
 
+    if (transaction[0].status === "COMPLETED") {
+        return res.status(200).json({
+            status: "ok",
+            message: "Transaction already approved",
+            signature: transaction?.[0]?.signature,
+        });
+    }
+
     sendToken(
         transaction[0].token,
         6,
@@ -189,6 +199,11 @@ const transactionApprove = async (req, res) => {
         transaction[0].amount
     )
         .then(async (signature) => {
+            await model.transaction.updateSignature(
+                signature,
+                transaction[0].id
+            );
+
             return res.json({
                 status: "ok",
                 message: "Transaction approved",

@@ -62,8 +62,25 @@ const getTransactionById = async (transactionId) => {
     });
 };
 
+const updateSignature = async (signature, id) => {
+    return new Promise((resolve, reject) => {
+        conn.query(
+            "UPDATE transactions SET signature = ?, status = ? WHERE id = ?",
+            [signature, "COMPLETED", id],
+            function (error, results, fields) {
+                if (error) {
+                    reject(error);
+                }
+
+                resolve(results);
+            }
+        );
+    });
+};
+
 module.exports = {
     list,
     create,
     getTransactionById,
+    updateSignature,
 };
