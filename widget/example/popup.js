@@ -27,7 +27,7 @@ window.popup = class Popup {
 
 	/**
 	 * @param options {{
-	 *   recipient: string;
+	 *   business: string;
 	 *   splToken?: string;
 	 *   reference?: string;
 	 *   label?: string;
@@ -41,7 +41,7 @@ window.popup = class Popup {
 
 	/**
 	 * @param options {{
-	 *   recipient: string;
+	 *   business: string;
 	 *   splToken?: string;
 	 *   reference?: string;
 	 *   label?: string;
@@ -61,6 +61,7 @@ window.popup = class Popup {
 	/**
 	 * @param data {{
 	 *   fiat: "AED" | "USD" | "NGN";
+	 *   token: string;
 	 *   customer_email?: string;
 	 *   amount?: string;
 	 *   onSuccess: (trx) => void

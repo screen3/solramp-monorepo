@@ -34,6 +34,10 @@ services:
       MYSQL_DATABASE: mydb
       DB_NAME: mydb
       JWT_SECRET: f2e61dd95af62e2f2d17bd224c4a2458
+      APP_HOST: http://159.65.213.14:7010
+      ZEPTOMAIL_TOKEN: Zoho-enczapikey wSsVR60g/Rf4Dat7n2KpJb05mF0EUVP3EEp73lT36X76Gf/H9sc5k0GfBQ6vHfNKQjJpEWQR8bt7mR8DgGYLi9wpyQtSACiF9mqRe1U4J3x17qnvhDzJWGxblhaAJI0Bxw9vkmZiEM8g+g==
+      MASTER_ADDRESS: 9AG3tQ91Wh2N5KodqcCfA1v7SnVhcbtBaYeRcMgPDzeL
+      MASTER_KEY: 2ZxfaM32EYFGj9MXt9ss7eJV9wpdSp5iTjgqHoyR7ryXgPFL6sGWrXKRyBEAV9KXbZhaF1ajcf9xsxTvHTcKWuFN
     depends_on:
       - db
   db:
