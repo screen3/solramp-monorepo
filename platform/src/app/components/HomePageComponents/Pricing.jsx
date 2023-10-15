@@ -24,10 +24,6 @@ export default function Pricing() {
                                 0.5% + Solana transaction fee on every
                                 transaction capped at $10
                             </p>
-                            <p>
-                                2% + Solana transaction fee / Bank transfer fee
-                                on every settlement
-                            </p>
                         </div>
                     </div>
                     <div className="pricing_box py-4 px-3 text-white rounded-lg">

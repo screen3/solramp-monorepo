@@ -28,13 +28,27 @@ export default function Home() {
                                         Checkout with Solramp
                                     </h1>
                                 </div>
-                                <div className="mb-5 mt-5  ">
+                                <div className="mt-5  ">
                                     <p className="text-base text-[#3F3F3F]">
-                                        Accept crypto payments from non-crypto
-                                        users. Use our Solramp SDK on your
-                                        website, available for Vuejs and
-                                        Reactjs, on your WordPress site, and on
-                                        your Shopify store.
+                                        Accept{" "}
+                                        <span className="underline">
+                                            crypto
+                                        </span>{" "}
+                                        payments from{" "}
+                                        <span className="underline">
+                                            non-crypto
+                                        </span>{" "}
+                                        users for your{" "}
+                                        <span className="underline">
+                                            business with ease.
+                                        </span>
+                                        <br />
+                                        Availabe for ReactJs, VueJs, Wordpress
+                                        and Shopify websites.
+                                        {/* Use our Solramp SDK on your website,
+                                        available for Vuejs and Reactjs, on your
+                                        WordPress site, and on your Shopify
+                                        store. */}
                                     </p>
                                 </div>
                             </div>

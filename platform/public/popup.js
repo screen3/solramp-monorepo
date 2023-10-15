@@ -75,7 +75,7 @@ window.popup = class Popup {
                 data: this.data,
                 action: "popup:data",
             },
-            "http://159.65.213.14:7010"
+            "https://widget.solramp.com"
         );
 
         // Set the width and height of the iframe
@@ -83,7 +83,7 @@ window.popup = class Popup {
             "style",
             "position: absolute; left: 0; top: 0; z-index: 100; border: none; outline: none;"
         );
-        document.body.setAttribute("overflow-y", "hidden")
+        document.body.setAttribute("overflow-y", "hidden");
         this.iframe.width = "100%";
         this.iframe.height = "100%";
     }
@@ -92,7 +92,7 @@ window.popup = class Popup {
         this.iframe = document.createElement("iframe");
 
         // Set the source (src) of the iframe
-        this.iframe.src = "http://159.65.213.14:7010";
+        this.iframe.src = "https://widget.solramp.com";
 
         // Set the width and height of the iframe
         this.iframe.setAttribute(
@@ -108,7 +108,7 @@ window.popup = class Popup {
                     options: this.options,
                     action: "popup:options",
                 },
-                "http://159.65.213.14:7010"
+                "https://widget.solramp.com"
             );
 
         document.body.appendChild(this.iframe);

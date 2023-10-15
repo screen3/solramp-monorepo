@@ -1,7 +1,13 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { FacebookIcon, InstagramIcon, LinkedInIcon, TwitterIcon, YoutubeIcon } from "../IconComponent";
+import {
+    FacebookIcon,
+    InstagramIcon,
+    LinkedInIcon,
+    TwitterIcon,
+    YoutubeIcon,
+} from "../IconComponent";
 
 export default function Footer() {
     const icons = ["facebook", "twitter", "instagram", "linkedin", "youtube"];
@@ -15,15 +21,15 @@ export default function Footer() {
                                 Contact
                             </h4>
                             <Link href="mailto:hello@solramp.finance">
-                                hello@solramp.finance
+                                info@solramp.finance
                             </Link>
 
                             <div className="flex items-center justify-start gap-3 mt-5">
-                                <FacebookIcon className={"w-6 h-6"}/>
-                                <TwitterIcon className={"w-6 h-6"}/>
-                                <InstagramIcon className={"w-6 h-6"}/>
-                                <LinkedInIcon className={"w-6 h-6"}/>
-                                <YoutubeIcon className={"w-6 h-6"}/>
+                                <FacebookIcon className={"w-6 h-6"} />
+                                <TwitterIcon className={"w-6 h-6"} />
+                                <InstagramIcon className={"w-6 h-6"} />
+                                <LinkedInIcon className={"w-6 h-6"} />
+                                <YoutubeIcon className={"w-6 h-6"} />
                             </div>
                         </div>
                         <div>
@@ -37,7 +43,7 @@ export default function Footer() {
                                     Video Tutorials
                                 </Link>
                             </div>
-                            <p className="text-[#909295]">
+                            <p className="text-[#909295] text-sm">
                                 Copyright &copy; SolRamp. All Rights Reserved.
                             </p>
                         </div>
