@@ -1,8 +1,12 @@
 import {Method, MethodId, PopupProps} from "../types";
 import '../popup.css'
 import Icons from "./icons";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import Api, {Ad, Fiat, Token} from "../api";
+import {Keypair, PublicKey} from '@solana/web3.js';
+import {createQR, encodeURL} from '@solana/pay';
+import BigNumber from 'bignumber.js';
+
 
 const api = new Api();
 
@@ -51,6 +55,7 @@ export default function Popup(props: PopupProps) {
             maxWidth: "480px",
             width: "100%",
             margin: "0 auto",
+            position: "relative"
           }}>
             <div style={{
               backgroundColor: "#fff",
@@ -109,6 +114,16 @@ export default function Popup(props: PopupProps) {
                     </div>
                   </div>
                 </div>
+                <div className="">
+                  <button type="button" aria-label="Close" className="button button--popup" onClick={() => {
+                    props.handleClose && props.handleClose()
+                  }}>
+                    <svg width="10" height="9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path data-v-7951e358="" d="M5.572 4.033L8.89.71a.4.4 0 0 0-.566-.566L5.003 3.459 1.681.145a.4.4 0 0 0-.566.566L4.44 4.033
+    1.115 7.354a.398.398 0 0 0 0 .566.4.4 0 0 0 .566 0l3.322-3.33 3.322 3.33a.4.4 0 0 0 .566-.566L5.57 4.033z" fill="#fff"></path>
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -131,14 +146,23 @@ function OptionsSwitcher(props: {type: MethodId, options: PopupProps}) {
 }
 
 function QR({options}: {options: PopupProps}) {
-  // useEffect(() => {
-    // solPayQrDataUrl(options)
-    //   .then(() => {
-    //
-    //   })
-    //   .catch(() => {})
-  // }, [])
-  // const imageRef = useRef<HTMLImageElement>();
+  const image = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!image.current) {return}
+
+    const qrCode = createQR(encodeURL({
+      recipient: new PublicKey(options.recipient),
+      splToken: options.splToken ? new PublicKey(options.splToken) : undefined,
+      amount: options.amount ? new BigNumber(options.amount) : undefined,
+      label: options.label,
+      message: options.message,
+      memo: options.memo,
+      reference: new Keypair().publicKey,
+    }), 200);
+
+    qrCode.append(image.current)
+  }, [options, image]);
+
   return <>
     <div className="" style={{display: "flex", justifyContent: "center", margin: "20px 0"}}>
       <svg xmlns="http://www.w3.org/2000/svg" width="86" height="32" viewBox="0 0 86 32" fill="none">
@@ -152,16 +176,18 @@ function QR({options}: {options: PopupProps}) {
     <div className="">
       <p className="main-description text-description" style={{textAlign: "center", color: "#676d72"}}>Scan the QR code below in your Solana wallet to complete the payment.</p>
     </div>
-    <div className="" style={{display: "flex", justifyContent: "center", margin: "20px 0"}}>
-      {/*<img src={""} ref={imageRef} alt={"qr code"}/>*/}
+    <div className="qr-code-container" style={{display: "flex", justifyContent: "center", margin: "20px 0"}} ref={image}>
     </div>
   </>;
 }
 
 function Wise({options}: {options: PopupProps}) {
   const [ad, setAd] = useState<Ad|undefined>()
+  const [fiat, setFiat] = useState<Fiat>()
+
   useEffect(() => {
     api.fetchAd({token: options.splToken, fiat: options.fiat, method: "wise"}).then((ad) => setAd(ad))
+    api.fetchFiat(options.fiat).then(r => setFiat(r))
   }, [options.fiat, options.splToken])
 
   return <>
@@ -175,15 +201,25 @@ function Wise({options}: {options: PopupProps}) {
         <div className="field-label">ACCOUNT NAME</div>
         <div className="field-value">{ad?.seller?.account_name}</div>
       </div>
+      <div className="field">
+        <div className="field-label">TRANSFER AMOUNT</div>
+        <div className="field-value" style={{marginBottom: 0}}>
+          {fiat?.symbol} {numberFormat((ad?.price as number) * (options?.amount as number))}
+        </div>
+      </div>
     </div>
   </>;
 }
 
 function BankTransfer({options}: {options: PopupProps}) {
   const [ad, setAd] = useState<Ad|undefined>()
+  const [fiat, setFiat] = useState<Fiat>()
+
   useEffect(() => {
     api.fetchAd({token: options.splToken, fiat: options.fiat, method: "bank"}).then((ad) => setAd(ad))
+    api.fetchFiat(options.fiat).then(r => setFiat(r))
   }, [options.fiat, options.splToken])
+
   return <>
     <div className="main-body-title">Pay with bank transfer</div>
     <div className="main-account-details">
@@ -199,11 +235,33 @@ function BankTransfer({options}: {options: PopupProps}) {
         <div className="field-label">ACCOUNT NAME</div>
         <div className="field-value">{ad?.seller?.account_name}</div>
       </div>
+      <div className="field">
+        <div className="field-label">TRANSFER AMOUNT</div>
+        <div className="field-value" style={{marginBottom: 0}}>
+          {fiat?.symbol} {numberFormat((ad?.price as number) * (options?.amount as number))}
+        </div>
+      </div>
     </div>
     <div className="main-description">
       <p className="text-description">Use this account for this transaction only</p>
     </div>
-    <button className="main-button-transparent">I've sent the money</button>
+    <button className="main-button-transparent" onClick={() => {
+      api.moneySent(options.business, {
+        channel: "BANK",
+        token: options.splToken ?? "Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr",
+        amount: options.amount,
+        "customer_email": options.customer_email,
+        "customer_name":options.customer_email,
+        "recipient": options.recipient,
+        "fee": 0.5,
+        "status": "PENDING",
+        "currency": options.fiat, //USD, NGN
+        "start_time": "2023-10-13 19:20:41.088", //timestamp
+        "end_time": "2023-10-13 19:20:41.088"    //timestamp
+      }).then((res) => {
+        console.log(res)
+      })
+    }}>I've sent the money</button>
   </>;
 }
 
@@ -215,26 +273,6 @@ function NavButton (props: Method) {
     <span className="payment-method-button-text">{props.name}</span>
   </button>
 }
-
-//  function solPayQrDataUrl(option: SolOptions) {
-//   return new Promise(async (resolve, reject) => {
-//     const reader = new FileReader();
-//     reader.onload = (event) => {
-//       if (typeof event.target?.result === 'string') {
-//         resolve(event.target.result);
-//       }
-//     };
-//
-//     // const qrCode = createQR(encodeURL({
-//     //   recipient: new PublicKey(option.recipient)
-//     // }));
-//     //
-//     // const blob = await qrCode.getRawData('png');
-//     // if (!blob) return;
-//
-//     // reader.readAsDataURL(blob);
-//   })
-// }
 
 function numberFormat(amount?: number) {
   if (!amount) return

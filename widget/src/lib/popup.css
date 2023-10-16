@@ -151,3 +151,29 @@
   font-size: 12px;
   text-align: center;
 }
+
+.button.button--popup {
+  position: absolute;
+  right: -20px;
+  height: 16px;
+  width: 16px;
+  padding: 0;
+  display: inline-block;
+  z-index: 3;
+  border-radius: 50%;
+  background: transparent;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+  border: none;
+}
+.button.button--popup:hover {
+  background-color: #e22b28;
+}
+
+.qr-code-container svg {
+  width: 128px !important;
+  height: 128px !important;
+}

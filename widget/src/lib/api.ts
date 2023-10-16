@@ -25,6 +25,7 @@ export interface Token {
 
 export interface Fiat {
   code: string,
+  symbol: string,
   icon: string
 }
 
@@ -32,14 +33,17 @@ export default class Api {
   private fiats: Record<SupportedFiatCode, Fiat> = {
     AED: {
       code: "AED",
+      symbol: "د.إ",
       icon: "🇦🇪"
     },
     NGN: {
       code: "NGN",
+      symbol: "₦",
       icon: "🇳🇬"
     },
     USD: {
       code: "USD",
+      symbol: "$",
       icon: "🇺🇸"
     }
   }
@@ -234,6 +238,9 @@ export default class Api {
   async fetchAd(filter: {
     method: SupportedMethods;
     token?: string, amount?: string, fiat?: "AED"|"USD"|"NGN"}): Promise<Ad|undefined> {
+    // const response = await fetch("http://159.65.213.14:7010/api/v1/ads/express");
+    // const ad = await response.json();
+    // console.log(ad)
     return this.ads.find((ad) => {
       let r = true;
       if (filter.fiat) { r = r && filter.fiat === ad.fiat.code }
@@ -243,11 +250,36 @@ export default class Api {
     });
   }
 
-  async fetchToken(address: string = "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB") {
+  async fetchToken(address: string = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") {
     return this.tokens.find((token) => token.address === address)
   }
 
   async fetchFiat(code: SupportedFiatCode) {
     return this.fiats[code]
+  }
+
+  async moneySent(business: string, data: {
+    start_time: string;
+    amount: number | undefined;
+    customer_email: string | undefined;
+    fee: number;
+    channel: string;
+    recipient: string;
+    end_time: string;
+    currency: "AED" | "USD" | "NGN";
+    customer_name: string | undefined;
+    token: string;
+    status: string
+  }) {
+    console.log(data)
+    const response = await fetch(`http://localhost:3001/api/v1/business/${business}/transaction/new`, {
+      body: JSON.stringify(data),
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    });
+    return await response.json()
   }
 }
