@@ -13,7 +13,7 @@ import {
 import Image from "next/image";
 import { ArrowDown, Category } from "react-iconly";
 
-const Sidebar = () => {
+const Sidebar = ({ business }) => {
     const [isCollapsible, setIsCollapsible] = useState(true);
     const router = useRouter();
     const pathname = usePathname();
@@ -92,10 +92,10 @@ const Sidebar = () => {
                                         />
                                         <div className="flex items-start flex-col">
                                             <span className="text-[#11161F] text-sm font-medium">
-                                                Business name
+                                                {business.business_name}
                                             </span>
                                             <span className="text-[#909295] text-xs ">
-                                                1432665
+                                                {business.business_ref}
                                             </span>
                                         </div>
                                     </div>

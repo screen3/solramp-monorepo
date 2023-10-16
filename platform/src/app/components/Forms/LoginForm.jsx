@@ -28,9 +28,7 @@ const LoginForm = () => {
         axios
             .post(`${apiURL}/account/login`, data, { withCredentials: true })
             .then((res) => {
-                console.log(res.headers);
-                // push("/dashboard");
-                setLoading(false);
+                push("/dashboard");
             })
             .catch((err) => {
                 console.log("err", err);

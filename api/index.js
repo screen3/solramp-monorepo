@@ -38,10 +38,7 @@ app.all("*", function (req, res, next) {
     next();
 });
 
-// parse requests of content-type - application/json
 app.use(express.json());
-
-// parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/api/v1/health", (req, res) => {

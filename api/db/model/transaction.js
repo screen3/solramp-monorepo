@@ -3,7 +3,7 @@ const conn = require("../conn.js");
 const list = async (businessId) => {
     return new Promise((resolve, reject) => {
         conn.query(
-            "SELECT * FROM transactions WHERE business_id = ? ",
+            "SELECT * FROM transactions INNER JOIN customers ON transactions.customer_id = customers.id WHERE transactions.business_id = ? ",
             [businessId],
             function (error, results, fields) {
                 if (error) {
