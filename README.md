@@ -1,11 +1,12 @@
 ## SolRamp
 
-![ezgif com-video-to-gif](https://github.com/screen3/solramp-monorepo/assets/7295729/a67b1d64-4399-47bc-ad7c-fb980e57e034)
+<img width="1152" alt="Screenshot 2023-10-16 at 6 58 27 AM" src="https://github.com/screen3/solramp-monorepo/assets/7295729/8715eb39-6f1a-498b-81d8-b7fda45ed6d4">
 
 
-Solramp allows merchants, to accept crypto payments  such as USDC and USDT on the Solana blockchain from non-crypto users with a very intuitive UI that delights your buyers with a great checkout experience. 
 
- Solramp SDK offers integrations with your website built with Reactjs and Vuejs, WordPress site, and your Shopify store.
+Solramp allows businesses to accept crypto payments  such as USDC and USDT on the Solana blockchain from non-crypto users with a very intuitive UI that delights your buyers with a great checkout experience. 
+
+ Solramp SDK offers integrations with your website built with Reactjs and Vuejs, your WordPress site, and Shopify store.
 
 Your customers can conveniently pay using :
 
