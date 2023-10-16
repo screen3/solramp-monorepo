@@ -18,7 +18,8 @@ export default function LandingHeroForm() {
     useEffect(() => {
         if (typeof window !== "undefined") {
             paymentPopup.current = window.popup.initialize({
-                business: "0292399023",
+                recipient: "9AG3tQ91Wh2N5KodqcCfA1v7SnVhcbtBaYeRcMgPDzeL",
+                business: "1697422541837",
             });
         }
     }, []);
@@ -34,7 +35,7 @@ export default function LandingHeroForm() {
                 paymentPopup.current.open({
                     amount: amount,
                     fiat: currency,
-                    token: crypto,
+                    // token: crypto,
                     customer_email: email,
                 });
             }

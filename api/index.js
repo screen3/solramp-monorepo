@@ -26,7 +26,7 @@ app.use(cookieParser());
 
 const corsOptions = {
     credentials: true,
-    origin: process.env.FRONTEND_URL,
+    origin: ["*", process.env.FRONTEND_URL, "http://localhost:5001"],
     // optionsSuccessStatus: 200,
 };
 
@@ -39,7 +39,15 @@ app.all("*", function (req, res, next) {
 });
 
 app.use(express.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+
+app.post("/", (req, res) => {
+    res.json({
+        status: "welcome",
+    });
+});
 
 app.post("/api/v1/health", (req, res) => {
     res.json({
