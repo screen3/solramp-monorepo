@@ -24,7 +24,7 @@ export default function LandingHeroForm() {
                     recipient: address,
                     amount: amount,
                     fiat: currency,
-                    // token: crypto,
+                    token: crypto,
                     customer_email: email,
                     onSuccess: () => {
                         console.log(4129012034210349)
