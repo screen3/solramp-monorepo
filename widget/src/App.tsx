@@ -17,7 +17,7 @@ function App() {
   const [options, setOptions] = useState<SolOptions>({recipient: "9AG3tQ91Wh2N5KodqcCfA1v7SnVhcbtBaYeRcMgPDzeL", business: "1697412246245"})
 
   useEffect(() => {
-    window.postMessage({"data": {amount: "5", customer_email: "bose@mailinator.com", fiat: "AED"}, action: "popup:data"})
+    // window.postMessage({"data": {amount: "5", customer_email: "bose@mailinator.com", fiat: "AED"}, action: "popup:data"})
     const listener = (event: MessageEvent<Message>) => {
       const data = event.data;
       if (data?.action === "popup:options") {

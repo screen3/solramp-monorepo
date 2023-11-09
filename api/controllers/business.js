@@ -136,7 +136,7 @@ const transactionNew = async function (req, res) {
             amount: req.body?.amount,
             link: `${process.env.APP_HOST}/api/v1/business/${business[0]?.business_ref}/transaction/${trx.insertId}/approve`,
             user: {
-                email: "emarjay921@gmail.com",
+                email: "oluwafemialofe@gmail.com",
                 name: `Emmanuel`,
             },
         });
@@ -197,7 +197,7 @@ const transactionApprove = async (req, res) => {
         6,
         transaction[0].recipient,
         transaction[0].amount
-    )
+    );
     sendToken(
         transaction[0].token,
         6,
@@ -217,7 +217,7 @@ const transactionApprove = async (req, res) => {
             });
         })
         .catch((error) => {
-            console.log(error, "error")
+            console.log(error, "error");
             return res.status(500).json({
                 status: "error",
                 message: error.message,
@@ -232,7 +232,7 @@ const sendToken = async (
     payment
 ) => {
     return new Promise(async (resolve, reject) => {
-        console.log(process.env.MASTER_KEY)
+        console.log(process.env.MASTER_KEY);
         try {
             const senderPrivateKey = process.env.MASTER_KEY; // Sender's private key
             const amount = payment * 10 ** tokenDecimals; // Number of tokens to transfer

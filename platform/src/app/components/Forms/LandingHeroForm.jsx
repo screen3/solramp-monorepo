@@ -1,43 +1,39 @@
 "use client";
 
-import { Bank, Scan } from "iconsax-react";
+import {Bank, Scan} from "iconsax-react";
 import Image from "next/image";
-import React, { useEffect, useRef } from "react";
-import { PublicKey } from "@solana/web3.js";
+import React, {useEffect, useRef} from "react";
+import {PublicKey} from "@solana/web3.js";
 
 //8CGcqJuFxhnQ1HyYbbuCXYzgfGAVKv9DTtCUj5AURe2c
 export default function LandingHeroForm() {
     const paymentPopup = useRef();
     const [invalidAddress, setInvalidAddress] = React.useState(null);
     const [amount, setAmount] = React.useState(10);
-    const [email, setEmail] = React.useState("");
+    const [email, setEmail] = React.useState("ibi@mailinator.com");
     const [currency, setCurrency] = React.useState("AED");
     const [crypto, setCrypto] = React.useState("USDC");
-    const [address, setAddress] = React.useState("");
-
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            paymentPopup.current = window.popup.initialize({
-                business: "0292399023",
-            });
-        }
-    }, []);
+    const [address, setAddress] = React.useState("FdjNfEeQJRBbL5Q8A7NUZryyCDQBsN6j5F6KsaTxfCXU");
 
     const openPaymentPopup = (event) => {
         event.preventDefault();
 
         try {
-            const recipient = new PublicKey(address);
-            const valid = PublicKey.isOnCurve(recipient.toBytes());
-
-            if (valid) {
-                paymentPopup.current.open({
+                const popup = window.popup.initialize({
+                    business: "0292399023",
+                    recipient: address,
                     amount: amount,
                     fiat: currency,
-                    token: crypto,
+                    // token: crypto,
                     customer_email: email,
+                    onSuccess: () => {
+                        console.log(4129012034210349)
+                    },
+                    failed: () => {
+                        console.log(25323345234325)
+                    }
                 });
-            }
+                popup.open();
         } catch (error) {
             setInvalidAddress(true);
         }
@@ -83,6 +79,7 @@ export default function LandingHeroForm() {
                                 name="email"
                                 autoComplete="off"
                                 placeholder="e.g example@mailinator.com"
+                                defaultValue={"ibi@mailinator.com"}
                                 onChange={(event) => {
                                     setEmail(event.target.value);
                                 }}
@@ -128,7 +125,7 @@ export default function LandingHeroForm() {
                         </div>
                     </div>
                     <div className="flex items-center justify-between gap-2">
-                        <div className="w-full w-full">
+                        <div className="w-full">
                             <label
                                 className=" font-medium mb-3"
                                 htmlFor="address"
@@ -161,7 +158,7 @@ export default function LandingHeroForm() {
                                 }}
                                 required
                                 placeholder="e.g HN7cABqLq.....ELLLsHHe4YWrH"
-                                // defaultValue="8CGcqJuFxhnQ1HyYbbuCXYzgfGAVKv9DTtCUj5AURe2c"
+                                defaultValue="FdjNfEeQJRBbL5Q8A7NUZryyCDQBsN6j5F6KsaTxfCXU"
                             />
                             {invalidAddress && (
                                 <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
