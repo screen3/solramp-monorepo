@@ -3,7 +3,7 @@ const {SendMailClient} = require("zeptomail");
 module.exports = {
   sendWelcome(user) {
       send({
-          subject: "Welcome to Solramp",
+          subject: "Welcome to Algoramp",
           body: `
     <table align="center" width="600" bgcolor="#ffffff" cellpadding="0" cellspacing="0" style="border-radius: 10px; margin: 0 auto; padding: 20px;">
         <tr>
@@ -13,14 +13,14 @@ module.exports = {
         </tr>
         <tr>
             <td style="padding: 20px;">
-                <h1>Welcome to SolRamp: Your Gateway to Seamless Solana P2P Ramping</h1>
+                <h1>Welcome to Algoramp: Your Gateway to Seamless Solana P2P Ramping</h1>
                 <p>Dear ${user.name},</p>
-                <p>Welcome to SolRamp, your premier platform for seamless peer-to-peer ramping on the Solana network. We are thrilled to have you on board and excited to introduce you to a world of simplified, secure, and efficient ramping.</p>
-                <h2>What is SolRamp?</h2>
-                <p>SolRamp is a groundbreaking platform designed to connect Solana enthusiasts like you with trusted peers who can help you securely acquire or dispose of SOL tokens. Our mission is to provide a safe, user-friendly environment for you to transact, ensuring that your experience with Solana is as smooth as possible.</p>
+                <p>Welcome to Algoramp, your premier platform for seamless peer-to-peer ramping on the Solana network. We are thrilled to have you on board and excited to introduce you to a world of simplified, secure, and efficient ramping.</p>
+                <h2>What is Algoramp?</h2>
+                <p>Algoramp is a groundbreaking platform designed to connect Solana enthusiasts like you with trusted peers who can help you securely acquire or dispose of SOL tokens. Our mission is to provide a safe, user-friendly environment for you to transact, ensuring that your experience with Solana is as smooth as possible.</p>
                 <h2>Key Features:</h2>
                 <ul>
-                    <li>Peer-to-Peer Ramping: SolRamp facilitates direct transactions between Solana users. No intermediaries, no third-party involvement - just a straightforward ramping experience.</li>
+                    <li>Peer-to-Peer Ramping: Algoramp facilitates direct transactions between Solana users. No intermediaries, no third-party involvement - just a straightforward ramping experience.</li>
                     <li>Secure Escrow Services: We use an escrow system to ensure that both buyers and sellers are protected throughout the transaction process. Funds are only released once both parties are satisfied.</li>
                     <li>Identity Verification: Your safety is paramount to us. We verify the identities of all users on the platform, giving you the peace of mind you need when conducting transactions.</li>
                     <li>User Reviews: Gain insights into the reputation of your ramping partner through user reviews and ratings. Choose who you want to transact with based on their track record.</li>
@@ -28,19 +28,19 @@ module.exports = {
                 </ul>
                 <h2>Getting Started:</h2>
                 <ol>
-                    <li>Complete Your Profile: Make sure your SolRamp profile is complete and up-to-date. This will help you build trust with other users on the platform.</li>
+                    <li>Complete Your Profile: Make sure your Algoramp profile is complete and up-to-date. This will help you build trust with other users on the platform.</li>
                     <li>Browse Listings: Search for suitable ramping partners or create your own listings if you're looking to buy or sell SOL tokens.</li>
                     <li>Secure Escrow: Once you find a suitable partner, initiate a transaction and let our secure escrow service handle the rest.</li>
                     <li>Stay Informed: Keep an eye on your dashboard for transaction progress and communicate with your partner through our messaging system.</li>
                 </ol>
-                <p>SolRamp is designed to make your journey with Solana easier and safer, and we're committed to ensuring that you have the best ramping experience possible.</p>
+                <p>Algoramp is designed to make your journey with Solana easier and safer, and we're committed to ensuring that you have the best ramping experience possible.</p>
                 <p>If you ever have questions or need assistance, don't hesitate to reach out to our dedicated support team at <a href="mailto:support@solramp.com">support@solramp.com</a>. We're here to help you every step of the way.</p>
-                <p>Thank you for choosing SolRamp. We look forward to revolutionizing your Solana experience.</p>
+                <p>Thank you for choosing Algoramp. We look forward to revolutionizing your Solana experience.</p>
                 <p>Happy Ramping!</p>
                 <p>Best regards,</p>
                 <p>[Your Name]</p>
-                <p>Founder, SolRamp</p>
-                <a href="https://www.solramp.com" style="text-decoration: none; color: #007BFF;">www.solramp.com</a>
+                <p>Founder, Algoramp</p>
+                <a href="https://www.Algoramp.com" style="text-decoration: none; color: #007BFF;">www.solramp.com</a>
             </td>
         </tr>
     </table>`,
@@ -107,7 +107,7 @@ function send(option) {
         "from":
             {
                 "address": "noreply@solramp.com",
-                "name": "Solramp"
+                "name": "Algoramp"
             },
         "to":
             [

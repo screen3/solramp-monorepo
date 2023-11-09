@@ -20,8 +20,8 @@ export default function Footer() {
                             <h4 className="text-[#344054] font-semibold text-lg mb-4">
                                 Contact
                             </h4>
-                            <Link href="mailto:hello@solramp.finance">
-                                info@solramp.finance
+                            <Link href="mailto:hello@Algoramp.finance">
+                                info@Algoramp.finance
                             </Link>
 
                             <div className="flex items-center justify-start gap-3 mt-5">
@@ -44,7 +44,7 @@ export default function Footer() {
                                 </Link>
                             </div>
                             <p className="text-[#909295] text-sm">
-                                Copyright &copy; SolRamp. All Rights Reserved.
+                                Copyright &copy; Algoramp. All Rights Reserved.
                             </p>
                         </div>
                     </div>

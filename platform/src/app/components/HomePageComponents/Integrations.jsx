@@ -27,11 +27,11 @@ export default function Integrations() {
                   React JS
                 </h4>
                 <p className="text-base text-[#6F7072] mb-4">
-                  Easily integrate Solramp into your ReactJS applications for
+                  Easily integrate Algoramp into your ReactJS applications for
                   seamless crypto checkout. Allow non-crypto users to make
                   payments using bank transfers, Transferwise, and Wallet
                   payments, all within the familiar ReactJS environment.
-                  Simplify cryptocurrency transactions with Solramp.
+                  Simplify cryptocurrency transactions with Algoramp.
                 </p>
 
                 <div className="mt-5">
@@ -59,8 +59,8 @@ export default function Integrations() {
                   Vue JS
                 </h4>
                 <p className="text-base text-[#6F7072]">
-                  Enhance your VueJS applications by integrating Solramp, the
-                  crypto checkout solution. With Solramp, you can enable
+                  Enhance your VueJS applications by integrating Algoramp, the
+                  crypto checkout solution. With Algoramp, you can enable
                   non-crypto users to conveniently pay via bank transfers,
                   Transferwise, and Wallet payments. Seamlessly integrate
                   cryptocurrency payments into your VueJS projects.
@@ -92,10 +92,10 @@ export default function Integrations() {
                 </h4>
                 <p className="text-base text-[#6F7072]">
                   Transform your Shopify store into a crypto-friendly e-commerce
-                  platform with Solramp integration. Allow non-crypto users to
+                  platform with Algoramp integration. Allow non-crypto users to
                   make payments using bank transfers, Transferwise, and Wallet
                   payments. Streamline cryptocurrency transactions on your
-                  Shopify store with Solramp.
+                  Shopify store with Algoramp.
                 </p>
 
                 <div className="mt-5">
@@ -120,8 +120,8 @@ export default function Integrations() {
                   Wordpress
                 </h4>
                 <p className="text-base text-[#6F7072]">
-                  Enhance your VueJS applications by integrating Solramp, the
-                  crypto checkout solution. With Solramp, you can enable
+                  Enhance your VueJS applications by integrating Algoramp, the
+                  crypto checkout solution. With Algoramp, you can enable
                   non-crypto users to conveniently pay via bank transfers,
                   Transferwise, and Wallet payments. Seamlessly integrate
                   cryptocurrency payments into your VueJS projects.

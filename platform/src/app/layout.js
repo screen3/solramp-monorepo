@@ -8,7 +8,7 @@ export const metadata = {
     title: "SolRamp: Accept crypto payment for non-crypto users on Solana",
     metadataBase: new URL("https://solramp.com"),
     description:
-        "Accept crypto payments from non-crypto users. Use our Solramp SDK on your website, available for Vuejs and Reactjs, on your WordPress site, and on your Shopify store.",
+        "Accept crypto payments from non-crypto users. Use our Algoramp SDK on your website, available for Vuejs and Reactjs, on your WordPress site, and on your Shopify store.",
     keyword: [
         "Solana",
         "Crypto to Fiat",
@@ -25,7 +25,7 @@ export const metadata = {
     openGraph: {
         title: "SolRamp: Accept crypto payment for non-crypto users on Solana",
         description:
-            "Accept crypto payments from non-crypto users. Use our Solramp SDK on your website, available for Vuejs and Reactjs, on your WordPress site, and on your Shopify store.",
+            "Accept crypto payments from non-crypto users. Use our Algoramp SDK on your website, available for Vuejs and Reactjs, on your WordPress site, and on your Shopify store.",
 
         url: "https://solramp.com",
         siteName: "Solramp",

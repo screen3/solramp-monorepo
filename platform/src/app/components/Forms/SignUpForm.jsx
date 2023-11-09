@@ -192,7 +192,7 @@ const SignUpForm = () => {
                     <div className="flex items-center my-4 ">
                         <p className="text-left font-normal text-[#474545] text-sm">
                             By clicking the create account button, you agree to
-                            Solramp&apos;s{" "}
+                            Algoramp&apos;s{" "}
                             <Link href={""} className="text-[#A15DDF]">
                                 terms of use
                             </Link>{" "}

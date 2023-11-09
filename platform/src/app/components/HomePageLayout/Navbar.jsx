@@ -17,10 +17,10 @@ const Navbar = () => {
                 className="text-xl text-gray-800 font-semibold font-heading"
               >
                 <Image
-                  src="/logo/ramplogo.png"
+                  src="/logo/algoramp.png"
                   width={100}
                   height={100}
-                  alt="logo"
+                  alt="algoramp logo"
                   priority
                   className='w-auto h-auto'
                 />

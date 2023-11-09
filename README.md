@@ -4,9 +4,9 @@
 
 
 
-Solramp allows businesses to accept crypto payments  such as USDC and USDT on the Solana blockchain from non-crypto users with a very intuitive UI that delights your buyers with a great checkout experience. 
+Algoramp allows businesses to accept crypto payments  such as USDC and USDT on the Solana blockchain from non-crypto users with a very intuitive UI that delights your buyers with a great checkout experience. 
 
- Solramp SDK offers integrations with your website built with Reactjs and Vuejs, your WordPress site, and Shopify store.
+ Algoramp SDK offers integrations with your website built with Reactjs and Vuejs, your WordPress site, and Shopify store.
 
 Your customers can conveniently pay using :
 
@@ -37,13 +37,13 @@ Convert USDC and USDT to Fiat instantly at current market rates fast and secured
 ## Integrations
 
 #### React JS
-Easily integrate Solramp into your ReactJS applications for seamless crypto checkout. Allow non-crypto users to make payments using bank transfers, Transferwise, and Wallet payments, all within the familiar ReactJS environment. Simplify cryptocurrency transactions with Solramp.
+Easily integrate Algoramp into your ReactJS applications for seamless crypto checkout. Allow non-crypto users to make payments using bank transfers, Transferwise, and Wallet payments, all within the familiar ReactJS environment. Simplify cryptocurrency transactions with Algoramp.
 
 ### Vue JS
-Enhance your VueJS applications by integrating Solramp, the crypto checkout solution. With Solramp, you can enable non-crypto users to conveniently pay via bank transfers, Transferwise, and Wallet payments. Seamlessly integrate cryptocurrency payments into your VueJS projects.
+Enhance your VueJS applications by integrating Algoramp, the crypto checkout solution. With Algoramp, you can enable non-crypto users to conveniently pay via bank transfers, Transferwise, and Wallet payments. Seamlessly integrate cryptocurrency payments into your VueJS projects.
 
 ### Shopify
-Transform your Shopify store into a crypto-friendly e-commerce platform with Solramp integration. Allow non-crypto users to make payments using bank transfers, Transferwise, and Wallet payments. Streamline cryptocurrency transactions on your Shopify store with Solramp.
+Transform your Shopify store into a crypto-friendly e-commerce platform with Algoramp integration. Allow non-crypto users to make payments using bank transfers, Transferwise, and Wallet payments. Streamline cryptocurrency transactions on your Shopify store with Algoramp.
 
 ### Wordpress
-Enhance your VueJS applications by integrating Solramp, the crypto checkout solution. With Solramp, you can enable non-crypto users to conveniently pay via bank transfers, Transferwise, and Wallet payments. Seamlessly integrate cryptocurrency payments into your VueJS projects.
+Enhance your VueJS applications by integrating Algoramp, the crypto checkout solution. With Algoramp, you can enable non-crypto users to conveniently pay via bank transfers, Transferwise, and Wallet payments. Seamlessly integrate cryptocurrency payments into your VueJS projects.

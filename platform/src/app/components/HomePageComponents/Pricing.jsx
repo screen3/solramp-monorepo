@@ -101,7 +101,7 @@ export default function Pricing() {
                                             className="font-bolder mb-3"
                                             htmlFor="s_fees"
                                         >
-                                            Solramp fees (0.5%)
+                                            Algoramp fees (0.5%)
                                         </label>
                                         <div className="bg-white border border-gray-300 focus:border-gray-400 rounded-md px-4 py-2 flex items-center h-12 mt-2">
                                             <span className="text-gray-700">
